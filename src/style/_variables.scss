@@ -1,0 +1,20 @@
+// Color
+$WHITE: #FFFFFF;
+$BLACK: #000000;
+$LIGHT_GRAY: #F2F2F2;
+$GRAY: #A6A6A6;
+$DARK_GRAY: #565656;
+$LIGHT_BLACK: #262626;
+$LIGHT_BLUE: #79C0FA;
+$DARK_BLUE: #2A5B75;
+
+//Variables
+@mixin box-shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+//Font
+$THIN: 100;
+$LIGHT: 300;
+$REGULAR: 400;
+$BOLD: 700;

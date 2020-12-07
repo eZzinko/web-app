@@ -1,0 +1,63 @@
+@import './variables';
+
+.navbar {
+    width: 100%;
+    min-height: 80px;
+    background: transparent;
+    position: fixed;
+
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 1330px;
+        margin: 0 60px;
+
+
+        img {
+            max-height: 40px;
+        }
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            text-align: center;
+            list-style: none;
+
+            li {
+                margin: 0 10px;
+                min-height: 80px;
+                display: flex;
+                align-items: center;
+
+                a {
+                    padding: 28px 15px;
+                    text-decoration: none;
+                    transition: 0.4s;
+
+                    &:hover {
+
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+
+        a.button {
+            border: 1px solid $LIGHT_BLACK;
+            border-radius: 10px;
+            padding: 5px 15px;
+            transition: .4s;
+
+            &:hover {
+                background-color: $WHITE;
+                // color: $LIGHT_GRAY;
+            }
+        }
+    }
+
+    &.active {
+        background-color: $LIGHT_GRAY;
+        @include box-shadow();
+    }
+}
