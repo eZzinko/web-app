@@ -34,25 +34,40 @@
                     padding: 28px 15px;
                     text-decoration: none;
                     transition: 0.4s;
+                    text-decoration: none;
+                    display: inline-block;
+                    position: relative;
 
-                    &:hover {
+                    &::after {
+                        background: none repeat scroll 0 0 transparent;
+                        content: "";
+                        display: block;
+                        height: 2px;
+                        left: 50%;
+                        position: absolute;
+                        background: $LIGHT_BLACK;
+                        transition: width 0.4s ease 0s, left 0.4s ease 0s;
+                        width: 0;
+                    }
 
-                        text-decoration: underline;
+                    &:hover::after {
+                        width: 80%;
+                        left: 10%;
                     }
                 }
             }
         }
+    }
 
-        a.button {
-            border: 1px solid $LIGHT_BLACK;
-            border-radius: 10px;
-            padding: 5px 15px;
-            transition: .4s;
+    a.button {
+        border: 1px solid $LIGHT_BLACK;
+        border-radius: 10px;
+        padding: 5px 15px;
+        transition: .4s;
 
-            &:hover {
-                background-color: $WHITE;
-                // color: $LIGHT_GRAY;
-            }
+        &:hover {
+            background-color: $WHITE;
+            // color: $LIGHT_GRAY;
         }
     }
 

@@ -1,6 +1,7 @@
 @import './style/variables';
 @import './style/nav';
 @import './style/mainpage';
+@import './style/components';
 
 * {
     margin: 0;
@@ -13,6 +14,7 @@ body {
     height: 100%;
     font-family: 'Poppins', sans-serif;
     background-color: $LIGHT_GRAY;
+    // height: 200vh;
 }
 
 p {
