@@ -37,6 +37,7 @@
                     text-decoration: none;
                     display: inline-block;
                     position: relative;
+                    color: $WHITE;
 
                     &::after {
                         background: none repeat scroll 0 0 transparent;
@@ -45,7 +46,7 @@
                         height: 2px;
                         left: 50%;
                         position: absolute;
-                        background: $LIGHT_BLACK;
+                        background: $LIGHT_GRAY;
                         transition: width 0.4s ease 0s, left 0.4s ease 0s;
                         width: 0;
                     }
@@ -60,19 +61,37 @@
     }
 
     a.button {
-        border: 1px solid $LIGHT_BLACK;
+        border: 1px solid $LIGHT_GRAY;
         border-radius: 10px;
         padding: 5px 15px;
         transition: .4s;
+        color: $LIGHT_GRAY;
 
         &:hover {
-            background-color: $WHITE;
-            // color: $LIGHT_GRAY;
+            background-color: $LIGHT_GRAY;
+            color: $LIGHT_BLACK;
         }
     }
 
     &.active {
         background-color: $LIGHT_GRAY;
         @include box-shadow();
+        a
+        {
+            color: $LIGHT_BLACK !important;
+            &::after
+            {
+                background: $LIGHT_BLACK !important;
+            }
+            &.button
+            {
+                border: 1px solid $LIGHT_BLACK;
+                &:hover
+                {
+                    background-color: $LIGHT_BLACK;
+                    color: $LIGHT_GRAY !important;
+                }
+            }
+        }
     }
 }

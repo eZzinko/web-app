@@ -6,6 +6,7 @@
     background-color: $WHITE;
     border-radius: 10px;
     padding: 30px 20px 20px 20px;
+    @include box-shadow();
 
     .info-card-footer {
         display: flex;
