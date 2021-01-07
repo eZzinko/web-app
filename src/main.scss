@@ -39,9 +39,15 @@ em {
     font-weight: $LIGHT;
 }
 
+h5 {
+    font-size: 12px;
+    font-weight: $BOLD;
+}
+
 h4 {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 32px;
+    font-weight: $BOLD;
 }
 
 h3 {

@@ -1,0 +1,45 @@
+.groupcard {
+    background: url("../../img/mainpicture.jpg") brown;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 450px;
+    height: 250px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    @include box-shadow();
+
+
+
+    a {
+        font-size: 53px;
+        color: $LIGHT_GRAY;
+        font-weight: $BOLD;
+        position: absolute;
+        z-index: 1;
+        cursor: pointer;
+        transition: 0.15s;
+
+        &:hover+.shadow-burn {
+            opacity: 0;
+        }
+    }
+
+    .shadow-burn {
+        background-color: #000000;
+        width: 100%;
+        height: 100%;
+        opacity: 0.5;
+        position: absolute;
+        transition: 0.15s;
+        border-radius: 15px;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 0;
+        }
+    }
+}

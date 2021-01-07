@@ -8,6 +8,29 @@
     padding: 30px 20px 20px 20px;
     @include box-shadow();
 
+    .info-card-content {
+        .link {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+
+            .icon {
+                height: 50px;
+                width: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 15px;
+
+                svg {
+                    height: 32px;
+                }
+            }
+
+            .content {}
+        }
+    }
+
     .info-card-footer {
         display: flex;
         align-items: baseline;

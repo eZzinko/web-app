@@ -8,7 +8,7 @@ const Infocard = () => {
             </div>
             <div className="info-card-footer">
                 <p>
-                    <a href="c.com">Přečíst více</a>
+                    <a href>Přečíst více</a>
                 </p>
                 <div className="buttons">
                     <button className="nextImg active"></button>

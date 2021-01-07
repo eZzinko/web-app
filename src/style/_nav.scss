@@ -5,6 +5,7 @@
     min-height: 80px;
     background: transparent;
     position: fixed;
+    z-index: 999999999;
 
     .nav-bar {
         display: flex;
@@ -76,18 +77,18 @@
     &.active {
         background-color: $LIGHT_GRAY;
         @include box-shadow();
-        a
-        {
+
+        a {
             color: $LIGHT_BLACK !important;
-            &::after
-            {
+
+            &::after {
                 background: $LIGHT_BLACK !important;
             }
-            &.button
-            {
+
+            &.button {
                 border: 1px solid $LIGHT_BLACK;
-                &:hover
-                {
+
+                &:hover {
                     background-color: $LIGHT_BLACK;
                     color: $LIGHT_GRAY !important;
                 }
