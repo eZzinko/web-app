@@ -1,17 +1,21 @@
 import React from 'react';
 
-const BlogCard = () => {
+
+
+const BlogCard = ({ recipe }) => {
+    var backgroundImage = {
+        backgroundImage: `url(${recipe.cover})`
+    }
     return (
         <div className="blogcard">
-            <div className="img-place">
-                <a href>Oběd</a>
+            <div className="img-place" style={backgroundImage}>
                 <div className="shadow-burn"></div>
             </div>
             <div className="text-area">
-                <h3>Salát Halumi se švestkami, hrachové štufle s taco Meat ingrediencí</h3>
+                <h3>{recipe.name}</h3>
                 <hr />
                 <div className="text-area-footer">
-                    <p>Napsal: <span>Daniel Neuman</span></p>
+                    <p>Napsal: <span>{recipe.artist}</span></p>
                     <p>22. 5. 2020</p>
                 </div>
             </div>

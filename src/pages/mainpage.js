@@ -17,7 +17,7 @@ const Mainpage = () => {
             </div>
             <div className="body-align">
                 <div className="advice">
-                    <h2>Tip na dnešní den</h2>
+                    <h2>Tip dnešního dne</h2>
                     <div className="row">
                         <GroupCard />
                         <GroupCard />

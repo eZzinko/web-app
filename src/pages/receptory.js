@@ -2,7 +2,7 @@ import React from 'react';
 import Infocard from '../components/infocard';
 import BlogCard from '../components/blogcard';
 
-const Receptory = () => {
+const Receptory = ({ recipes }) => {
     return (
         <>
             <div className="header">
@@ -77,6 +77,7 @@ const Receptory = () => {
                         </div>
                     </div>
                     <div className="row">
+                        {/* <BlogCard />
                         <BlogCard />
                         <BlogCard />
                         <BlogCard />
@@ -84,8 +85,10 @@ const Receptory = () => {
                         <BlogCard />
                         <BlogCard />
                         <BlogCard />
-                        <BlogCard />
-                        <BlogCard />
+                        <BlogCard /> */}
+                        {recipes.map((recipe) => (
+                            <BlogCard recipe={recipe} />
+                        ))}
                     </div>
                 </div>
             </div>

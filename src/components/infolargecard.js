@@ -1,10 +1,10 @@
 import React from 'react';
 
-const InfoLargeCard = () => {
+const InfoLargeCard = (props) => {
     return (
         <div className="info-card large">
             <div className="info-card-heading">
-                <h2>Lorem ipsum sit amet</h2>
+                <h2>{props.name}</h2>
             </div>
             <div className="info-card-content">
                 <div className="link">

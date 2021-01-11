@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GroupCard = () => {
+const GroupCard = (text) => {
     return (
         <div className="groupcard">
             <a href>Oběd</a>
