@@ -1,12 +1,16 @@
 @import '../variables';
 
 .info-card {
-    max-width: 430px;
+    max-width: 420px;
     width: 100%;
     background-color: $WHITE;
     border-radius: 10px;
     padding: 30px 20px 20px 20px;
     @include box-shadow();
+
+    &.large {
+        max-width: 540px;
+    }
 
     .info-card-content {
         .link {

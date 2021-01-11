@@ -41,11 +41,25 @@
         margin-top: 40px;
     }
 
-    .row {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        align-items: center;
-        margin: 40px;
+    .mealofday {
+        // background-color: burlywood;
+        max-width: 1330px;
+        width: 100%;
+        margin: 0 auto;
+        position: relative;
+
+        .image-box {
+            background-image: url("../img/mainpicture.jpg");
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 1000px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+            border-radius: 15px;
+        }
     }
 }

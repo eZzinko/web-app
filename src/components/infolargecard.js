@@ -2,7 +2,7 @@ import React from 'react';
 
 const InfoLargeCard = () => {
     return (
-        <div className="info-card">
+        <div className="info-card large">
             <div className="info-card-heading">
                 <h2>Lorem ipsum sit amet</h2>
             </div>

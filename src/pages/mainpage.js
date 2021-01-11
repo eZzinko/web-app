@@ -15,18 +15,31 @@ const Mainpage = () => {
                     </div>
                 </div>
             </div>
-            <div className="advice">
-                <h2>Tip na dnešní den</h2>
-                <div className="row">
-                    <GroupCard />
-                    <GroupCard />
-                    <GroupCard />
-                </div>
-                <div className="mealofday">
-                    <div className="card">
-                        <InfoLargeCard />
+            <div className="body-align">
+                <div className="advice">
+                    <h2>Tip na dnešní den</h2>
+                    <div className="row">
+                        <GroupCard />
+                        <GroupCard />
+                        <GroupCard />
                     </div>
-                    <div className="image-box"></div>
+                    <div className="mealofday">
+                        <div className="card">
+                            <InfoLargeCard />
+                        </div>
+                        <div className="image-box"></div>
+                    </div>
+                </div>
+                <div className="category">
+                    <h2>Kategorie</h2>
+                    <div className="row">
+                        <GroupCard />
+                        <GroupCard />
+                        <GroupCard />
+                        <GroupCard />
+                        <GroupCard />
+                        <GroupCard />
+                    </div>
                 </div>
             </div>
         </>

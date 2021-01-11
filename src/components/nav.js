@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import logo_img from '../img/logo.svg';
+import { Link } from 'react-router-dom';
 
 const Nav = () => {
     // Scroll effect
@@ -22,18 +23,26 @@ const Nav = () => {
                     <h1><img src={logo_img} alt="logo" /></h1>
                     <div className="nav-items">
                         <ul>
-                            <li>
-                                <a href="a.com">Domů</a>
-                            </li>
-                            <li>
-                                <a href="a.com">Receptář</a>
-                            </li>
-                            <li>
-                                <a href="a.com">Blog</a>
-                            </li>
-                            <li>
-                                <a href="a.com">Můj recept</a>
-                            </li>
+                            <Link to='/'>
+                                <li>
+                                    <a href="/">Domů</a>
+                                </li>
+                            </Link>
+                            <Link to='/receptar'>
+                                <li>
+                                    <a href="/receptar">Receptář</a>
+                                </li>
+                            </Link>
+                            <Link to='/'>
+                                <li>
+                                    <a href="/">Blog</a>
+                                </li>
+                            </Link>
+                            <Link to='/create'>
+                                <li>
+                                    <a href="/create">Můj recept</a>
+                                </li>
+                            </Link>
                         </ul>
                     </div>
                     <a href="facebook.com" className="button">Přihlásit se</a>
