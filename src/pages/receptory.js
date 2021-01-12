@@ -77,15 +77,6 @@ const Receptory = ({ recipes }) => {
                         </div>
                     </div>
                     <div className="row">
-                        {/* <BlogCard />
-                        <BlogCard />
-                        <BlogCard />
-                        <BlogCard />
-                        <BlogCard />
-                        <BlogCard />
-                        <BlogCard />
-                        <BlogCard />
-                        <BlogCard /> */}
                         {recipes.map((recipe) => (
                             <BlogCard recipe={recipe} />
                         ))}

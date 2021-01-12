@@ -23,26 +23,33 @@ const Nav = () => {
                     <h1><img src={logo_img} alt="logo" /></h1>
                     <div className="nav-items">
                         <ul>
-                            <Link to='/'>
-                                <li>
-                                    <a href="/">Domů</a>
-                                </li>
-                            </Link>
-                            <Link to='/receptar'>
-                                <li>
-                                    <a href="/receptar">Receptář</a>
-                                </li>
-                            </Link>
-                            <Link to='/'>
-                                <li>
-                                    <a href="/">Blog</a>
-                                </li>
-                            </Link>
-                            <Link to='/create'>
-                                <li>
-                                    <a href="/create">Můj recept</a>
-                                </li>
-                            </Link>
+
+                            <li>
+                                <Link to='/'>
+                                    Domů
+                                </Link>
+                            </li>
+
+                            <li>
+                                <Link to='/receptar'>
+                                    Receptář
+                                </Link>
+                            </li>
+
+
+                            <li>
+                                <Link to='/'>
+                                    Blog
+                                </Link>
+                            </li>
+
+
+                            <li>
+                                <Link to='/create'>
+                                    Můj recept
+                                </Link>
+                            </li>
+
                         </ul>
                     </div>
                     <a href="facebook.com" className="button">Přihlásit se</a>

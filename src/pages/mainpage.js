@@ -4,6 +4,7 @@ import GroupCard from '../components/groupcard';
 import InfoLargeCard from "../components/infolargecard";
 
 const Mainpage = () => {
+
     return (
         <>
             <div className="header">
@@ -39,6 +40,7 @@ const Mainpage = () => {
                         <GroupCard />
                         <GroupCard />
                         <GroupCard />
+
                     </div>
                 </div>
             </div>
