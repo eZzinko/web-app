@@ -24,7 +24,9 @@
 
 
     a {
-        font-size: 53px;
+        font-size: 42px;
+        text-align: center;
+        padding: 15px;
         color: $LIGHT_GRAY;
         font-weight: $BOLD;
         position: absolute;
@@ -33,7 +35,7 @@
         transition: 0.15s;
 
         &:hover+.shadow-burn {
-            opacity: 0;
+            opacity: 0.2;
         }
     }
 
@@ -48,7 +50,7 @@
         cursor: pointer;
 
         &:hover {
-            opacity: 0;
+            opacity: 0.2;
         }
     }
 }

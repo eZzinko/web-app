@@ -19,11 +19,12 @@ function App() {
       <div className="App">
         <Nav />
         <Switch>
-          <Route path="/" exact component={Mainpage} />
-          <Route path="/receptar" exact render={(props) => <Receptory recipes={recipes} />} />
-          {/* <Route path="/receptar/:id" render={(props) => <ReceptoryFile recipes={recipes} />} /> */}
-          <Route path="/receptar/:id" component={ReceptoryFile} />
-          <Route path="/create" component={ReceptoryFile} />
+          <Route path="/" exact render={(props) => <Mainpage recipes={recipes} />} />
+          <Route path="/receptar" exact render={(props) => <Receptory recipes={recipes} setRecipe={setRecipe} />} />
+
+          <Route path="/receptar/:id" render={(props) => <ReceptoryFile recipe={recipe} />} />
+
+          {/* <Route path="/create" component={ReceptoryFile} /> */}
         </Switch>
         <Footer />
       </div>

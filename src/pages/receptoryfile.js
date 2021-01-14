@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import RecepieCard from '../components/recepiecard';
-import data from '../utils/util';
+import React from 'react';
+import BlogCard from '../components/blogcard';
+import BlogDetailCard from '../components/blogdetailcard';
 
+const ReceptoryFile = ({ recipe }) => {
+    const backgroundImage = {
+        backgroundImage: `url(${recipe.cover})`
+    }
 
-const ReceptoryFile = ({ match }) => {
-    // eslint-disable-next-line 
-    const [recipes, setRecipes] = useState(data());
-    // eslint-disable-next-line 
-    const [recipe, setRecipe] = useState(recipes[1]);
-    useState(() => {
-        console.log(match);
-    })
+    const object = recipe.ingre;
+    // console.log(object);
+    const result = Object.keys(object).map((key) => ["object", object[key]]);
+    // console.log(result);
     return (
         <>
-            <div className="cover">
+            <div className="cover" style={backgroundImage}>
                 <div className="overlay"></div>
                 {/* <h2>Přidejte fotografii</h2> */}
                 <div className="cover-panel-full">
@@ -36,12 +36,8 @@ const ReceptoryFile = ({ match }) => {
                 </div>
                 <div className="content-box">
                     <div className="content">
-                        {/* <RecepieCard />
-                        <RecepieCard />
-                        <RecepieCard /> */}
-                        {recipe.ingredients.map((recipe) => (
-                            <RecepieCard recipe={recipe} />
-                        ))}
+                        <BlogDetailCard result={result} name={"Ingredience"} />
+                        <BlogDetailCard result={result} name={"Postup přípravy"} />
                     </div>
                     <div className="side-bar">
                         <p>uigui</p>

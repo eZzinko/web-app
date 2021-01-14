@@ -3,7 +3,14 @@ import Infocard from '../components/infocard';
 import GroupCard from '../components/groupcard';
 import InfoLargeCard from "../components/infolargecard";
 
-const Mainpage = () => {
+const Mainpage = ({ recipes }) => {
+    let allItem = [...recipes];
+    let row = [];
+    for (let i = 0; i < 3; i++) {
+        row.push(<GroupCard text={recipes[Math.floor(Math.random() * allItem.length)]} />);
+    }
+
+
 
     return (
         <>
@@ -20,9 +27,7 @@ const Mainpage = () => {
                 <div className="advice">
                     <h2>Tip dnešního dne</h2>
                     <div className="row">
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
+                        {row}
                     </div>
                     <div className="mealofday">
                         <div className="card">
@@ -34,12 +39,12 @@ const Mainpage = () => {
                 <div className="category">
                     <h2>Kategorie</h2>
                     <div className="row">
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
-                        <GroupCard />
+                        <GroupCard text={recipes[0]} />
+                        <GroupCard text={recipes[0]} />
+                        <GroupCard text={recipes[0]} />
+                        <GroupCard text={recipes[0]} />
+                        <GroupCard text={recipes[0]} />
+                        <GroupCard text={recipes[0]} />
 
                     </div>
                 </div>

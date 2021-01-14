@@ -2,13 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 
-const BlogCard = ({ recipe }) => {
-    var backgroundImage = {
+const BlogCard = ({ recipe, setRecipe, recipes, id }) => {
+    const backgroundImage = {
         backgroundImage: `url(${recipe.cover})`
+    }
+    const linkHandler = () => {
+        const selectedRecipe = recipes.filter((state) => state.id === id);
+        setRecipe(selectedRecipe[0]);
     }
     return (
         <Link to={`/receptar/${recipe.id}`} className="blogcard">
-            <div className="blogcard">
+            <div className="blogcard" onClick={linkHandler}>
                 <div className="img-place" style={backgroundImage}>
                     <div className="shadow-burn"></div>
                 </div>
