@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "uuid";
 function chillHop() {
     return [
         {
+            main: true,
             createdAt: "12. 1. 2020",
             id: uuidv4(),
             name: "Vláčná mramorová bábovka",
@@ -21,6 +22,7 @@ function chillHop() {
             }
         },
         {
+            main: true,
             createdAt: "24. 5. 2020",
             id: uuidv4(),
             name: "Křehké zelňáky",
@@ -40,9 +42,10 @@ function chillHop() {
             }
         },
         {
+            main: true,
             createdAt: "24. 5. 2020",
             id: uuidv4(),
-            name: "Křehké zelňáky",
+            name: "Nějaké jídlo",
             madePrice: "600",
             madeTime: "45",
             cover: "https://images.pexels.com/photos/4871119/pexels-photo-4871119.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260",
@@ -59,6 +62,7 @@ function chillHop() {
             }
         },
         {
+            main: false,
             createdAt: "24. 5. 2020",
             id: uuidv4(),
             name: "Křehké zelňáky",
@@ -78,6 +82,7 @@ function chillHop() {
             }
         },
         {
+            main: false,
             createdAt: "24. 5. 2020",
             id: uuidv4(),
             name: "Křehké zelňáky",
@@ -97,6 +102,7 @@ function chillHop() {
             }
         },
         {
+            main: false,
             createdAt: "20. 9. 2020",
             id: uuidv4(),
             name: "Zelňáky s uzeným",
@@ -116,6 +122,7 @@ function chillHop() {
             }
         },
         {
+            main: false,
             createdAt: "24. 5. 2020",
             id: uuidv4(),
             name: "Křehké zelňáky",
@@ -135,6 +142,7 @@ function chillHop() {
             }
         },
         {
+            main: false,
             createdAt: "24. 5. 2020",
             id: uuidv4(),
             name: "Křehké zelňáky",
@@ -154,6 +162,7 @@ function chillHop() {
             }
         },
         {
+            main: false,
             createdAt: "24. 5. 2020",
             id: uuidv4(),
             name: "Křehké zelňáky",

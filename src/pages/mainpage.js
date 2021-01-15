@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Infocard from '../components/infocard';
 import GroupCard from '../components/groupcard';
 import InfoLargeCard from "../components/infolargecard";
@@ -10,18 +10,13 @@ const Mainpage = ({ recipes }) => {
         row.push(<GroupCard text={recipes[Math.floor(Math.random() * allItem.length)]} />);
     }
 
-
+    const [mainImgs, setMainImgs] = useState(recipes.filter(button => button.main === true));
+    const [mainImg, setMainImg] = useState(mainImgs[0]);
 
     return (
         <>
             <div className="header">
-                <div className="header-box">
-                    <div className="img-box">
-                    </div>
-                    <div className="card-box">
-                        <Infocard />
-                    </div>
-                </div>
+                <Infocard mainImg={mainImg} setMainImg={setMainImg} mainImgs={mainImgs} />
             </div>
             <div className="body-align">
                 <div className="advice">

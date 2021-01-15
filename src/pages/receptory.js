@@ -1,6 +1,8 @@
 import React from 'react';
 import Infocard from '../components/infocard';
 import BlogCard from '../components/blogcard';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const Receptory = ({ recipes, setRecipe }) => {
     return (
@@ -10,7 +12,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                     <div className="img-box">
                     </div>
                     <div className="card-box">
-                        <Infocard />
+
                     </div>
                 </div>
             </div>
@@ -20,6 +22,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                     <h2>Najděte si, na co máte chuť</h2>
                     <div className="search-bar">
                         <input type="search"></input>
+                        <FontAwesomeIcon icon={faSearch} />
                     </div>
                     <div className="filter-bar">
                         <div class="dropdown">
