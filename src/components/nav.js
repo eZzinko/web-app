@@ -36,14 +36,6 @@ const Nav = () => {
                                 </Link>
                             </li>
 
-
-                            <li>
-                                <Link to='/'>
-                                    Blog
-                                </Link>
-                            </li>
-
-
                             <li>
                                 <Link to='/create'>
                                     Můj recept

@@ -1,5 +1,4 @@
 import React from 'react';
-import Infocard from '../components/infocard';
 import BlogCard from '../components/blogcard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';

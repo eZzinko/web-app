@@ -1,5 +1,4 @@
 import React from 'react';
-import BlogCard from '../components/blogcard';
 import BlogDetailCard from '../components/blogdetailcard';
 
 const ReceptoryFile = ({ recipe }) => {
@@ -7,10 +6,7 @@ const ReceptoryFile = ({ recipe }) => {
         backgroundImage: `url(${recipe.cover})`
     }
 
-    const object = recipe.ingre;
-    // console.log(object);
-    const result = Object.keys(object).map((key) => ["object", object[key]]);
-    // console.log(result);
+
     return (
         <>
             <div className="cover" style={backgroundImage}>
@@ -32,25 +28,14 @@ const ReceptoryFile = ({ recipe }) => {
             </div>
             <div className="body-align">
                 <div className="short-info">
-                    <p>{recipe.description}</p>
+                    <span>{recipe.description}</span>
                 </div>
                 <div className="content-box">
                     <div className="content">
-                        <BlogDetailCard result={result} name={"Ingredience"} />
-                        <BlogDetailCard result={result} name={"Postup přípravy"} />
+
                     </div>
                     <div className="side-bar">
-                        <p>uigui</p>
-                        <p>uigui</p>
-                        <p>uigui</p>
-                        <p>uigui</p>
-                        <p>uigui</p>
-
-                        <p>uigui</p>
-                        <p>uigui</p>
-                        <p>uigui</p>
-
-                        <p>uigui</p>
+                        <span>uuid()</span>
 
                     </div>
                 </div>

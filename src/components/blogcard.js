@@ -20,8 +20,8 @@ const BlogCard = ({ recipe, setRecipe, recipes, id }) => {
                     <h3>{recipe.name}</h3>
                     <hr />
                     <div className="text-area-footer">
-                        <p>Napsal: <span>{recipe.artist}</span></p>
-                        <p>{recipe.createdAt}</p>
+                        <span>Napsal: <span>{recipe.artist}</span></span>
+                        <span>Add time</span>
                     </div>
                 </div>
             </div>
