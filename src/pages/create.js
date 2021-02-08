@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { v4 as uuid4 } from "uuid";
 import firebase from '../firebase';
 
@@ -12,8 +12,11 @@ const Create = () => {
     const [description, setDescription] = useState();
     const [madePrice, setMadePrice] = useState();
     const [madeTime, setMadeTime] = useState();
+    // eslint-disable-next-line
     const [main, setMain] = useState(false);
     const [name, setName] = useState();
+    const [category, setCategory] = useState();
+    const [subCategory, setSubCategory] = useState();
 
     function addRecipe(newRecipe) {
         ref
@@ -60,8 +63,16 @@ const Create = () => {
                     <label htmlFor="">Name</label>
                     <input type="text" onChange={(e) => setName(e.target.value)} />
                 </p>
+                <p>
+                    <label htmlFor="">Category</label>
+                    <input type="text" onChange={(e) => setCategory(e.target.value)} />
+                </p>
+                <p>
+                    <label htmlFor="">subCategory</label>
+                    <input type="text" onChange={(e) => setSubCategory(e.target.value)} />
+                </p>
 
-                <button onClick={() => addRecipe({ artist, cover, createdAt, description, id: uuid4(), madePrice, madeTime, main, name })}>Submit</button>
+                <button onClick={() => addRecipe({ artist, cover, createdAt, description, id: uuid4(), madePrice, madeTime, main, name, category, subCategory })}>Submit</button>
             </div>
         </>
     );

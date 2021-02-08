@@ -34,6 +34,15 @@ const Footer = () => {
                             <li>Kontakty</li>
                         </ul>
                     </div>
+                    <div className="column">
+                        <h5>Sledujte</h5>
+                        <ul>
+                            <li>Domů</li>
+                            <li>Receptář</li>
+                            <li>Blog</li>
+                            <li>Kontakty</li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="copy">
                     <span>Copyright &copy; 2020 - DEV&amp;Design Daniel Neuman</span>

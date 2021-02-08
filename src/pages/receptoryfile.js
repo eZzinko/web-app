@@ -1,5 +1,4 @@
 import React from 'react';
-import BlogDetailCard from '../components/blogdetailcard';
 
 const ReceptoryFile = ({ recipe }) => {
     const backgroundImage = {

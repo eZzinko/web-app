@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Infocard from '../components/infocard';
 import GroupCard from '../components/groupcard';
 import InfoLargeCard from "../components/infolargecard";
 
-const Mainpage = ({ recipes, recipe, setRecipe }) => {
+const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
     let allItem = [...recipes];
     let row = [];
     let repeat;
@@ -13,22 +13,19 @@ const Mainpage = ({ recipes, recipe, setRecipe }) => {
     else {
         repeat = allItem.length;
     }
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < repeat; i++) {
         row.push(<GroupCard text={recipes[Math.floor(Math.random() * allItem.length)]} setRecipe={setRecipe} recipes={recipes} id={recipe.id} key={recipe.id} />);
     }
 
     let cards = [];
-    for (let i = 0; i < repeat; i++) {
+    for (let i = 0; i < allItem.length; i++) {
         cards.push(<GroupCard text={recipes[i]} setRecipe={setRecipe} recipes={recipes} id={recipe.id} key={recipe.id} />);
     }
-
-    const [mainImgs] = useState(recipes.filter(button => button.main === true));
-    const [mainImg, setMainImg] = useState(mainImgs[0]);
 
     return (
         <>
             <div className="header">
-                <Infocard mainImg={mainImg} setMainImg={setMainImg} mainImgs={mainImgs} setRecipe={setRecipe} />
+                <Infocard mainImg={mainImg} setMainImg={setMainImg} mainImgs={mainImgs} setRecipe={setRecipe} key={mainImg.id} />
             </div>
             <div className="body-align">
 
@@ -39,7 +36,7 @@ const Mainpage = ({ recipes, recipe, setRecipe }) => {
                     </div>
                     <div className="mealofday">
                         <div className="card">
-                            <InfoLargeCard />
+                            <InfoLargeCard key={recipe.id} />
                         </div>
                         <div className="image-box"></div>
                     </div>

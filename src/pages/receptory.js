@@ -25,7 +25,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                     </div>
                     <div className="filter-bar">
                         <div class="dropdown">
-                            <button class="dropbtn">Dropdown</button>
+                            <button class="dropbtn">Snídaně</button>
                             <div class="dropdown-content">
                                 <a href="/">Link 1</a>
                                 <a href="/">Link 2</a>
@@ -34,7 +34,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                         </div>
 
                         <div class="dropdown">
-                            <button class="dropbtn">Dropdown</button>
+                            <button class="dropbtn">Svačina</button>
                             <div class="dropdown-content">
                                 <a href="/">Link 1</a>
                                 <a href="/">Link 2</a>
@@ -43,7 +43,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                         </div>
 
                         <div class="dropdown">
-                            <button class="dropbtn">Dropdown</button>
+                            <button class="dropbtn">Předkrm</button>
                             <div class="dropdown-content">
                                 <a href="/">Link 1</a>
                                 <a href="/">Link 2</a>
@@ -52,7 +52,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                         </div>
 
                         <div class="dropdown">
-                            <button class="dropbtn">Dropdown</button>
+                            <button class="dropbtn">Polévka</button>
                             <div class="dropdown-content">
                                 <a href="/">Link 1</a>
                                 <a href="/">Link 2</a>
@@ -61,7 +61,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                         </div>
 
                         <div class="dropdown">
-                            <button class="dropbtn">Dropdown</button>
+                            <button class="dropbtn">Hlavní chod</button>
                             <div class="dropdown-content">
                                 <a href="/">Link 1</a>
                                 <a href="/">Link 2</a>
@@ -70,7 +70,7 @@ const Receptory = ({ recipes, setRecipe }) => {
                         </div>
 
                         <div class="dropdown">
-                            <button class="dropbtn">Dropdown</button>
+                            <button class="dropbtn">Večeře</button>
                             <div class="dropdown-content">
                                 <a href="/">Link 1</a>
                                 <a href="/">Link 2</a>
