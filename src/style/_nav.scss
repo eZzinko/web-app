@@ -6,6 +6,7 @@
     background: transparent;
     position: fixed;
     z-index: 999999999;
+    color: #000000 !important;
 
     .nav-bar {
         display: flex;
@@ -38,7 +39,7 @@
                     text-decoration: none;
                     display: inline-block;
                     position: relative;
-                    color: $WHITE;
+                    // color: $WHITE;
 
                     &::after {
                         background: none repeat scroll 0 0 transparent;
@@ -61,12 +62,17 @@
         }
     }
 
-    a.button {
-        border: 1px solid $LIGHT_GRAY;
+    a.button,
+    .button-nav {
+        // border: 1px solid $LIGHT_GRAY;
+        border: 1px solid #000;
         border-radius: 10px;
         padding: 5px 15px;
+        font-size: 16px;
         transition: .4s;
-        color: $LIGHT_GRAY;
+        // color: $LIGHT_GRAY;
+        background-color: transparent;
+        cursor: pointer;
 
         &:hover {
             background-color: $LIGHT_GRAY;
@@ -85,8 +91,10 @@
                 background: $LIGHT_BLACK !important;
             }
 
-            &.button {
+            &.button,
+            .button-nav {
                 border: 1px solid $LIGHT_BLACK;
+                color: $BLACK !important;
 
                 &:hover {
                     background-color: $LIGHT_BLACK;

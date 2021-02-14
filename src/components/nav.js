@@ -1,8 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import logo_img from '../img/logo.svg';
 import { Link } from 'react-router-dom';
+import firebase from '../firebase';
 
-const Nav = () => {
+
+const Nav = ({ logged, setLogged }) => {
+    const logOut = () => {
+        firebase.auth().signOut();
+        setLogged(false);
+    };
+
     // Scroll effect
     const [navbar, setNavbar] = useState(false);
     const changeBackground = () => {
@@ -20,7 +27,7 @@ const Nav = () => {
         <>
             <nav className={navbar ? 'navbar active' : 'navbar'}>
                 <div className="nav-bar">
-                    <h1><img src={logo_img} alt="logo" /></h1>
+                    <Link to='/'><h1><img src={logo_img} alt="logo" /></h1></Link>
                     <div className="nav-items">
                         <ul>
 
@@ -41,10 +48,20 @@ const Nav = () => {
                                     Můj recept
                                 </Link>
                             </li>
+                            {
+                                logged ?
+                                    <li>
+                                        <Link to='/account'>
+                                            Profil
+                                </Link>
+                                    </li>
+                                    : ""
+                            }
+
 
                         </ul>
                     </div>
-                    <a href="facebook.com" className="button">Přihlásit se</a>
+                    {logged ? <button onClick={logOut} className="button-nav">Odhlásit se</button> : <Link to='/login' className="button-nav">Přihlásit se</Link>}
                 </div>
             </nav>
         </>
