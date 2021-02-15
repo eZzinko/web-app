@@ -22,12 +22,25 @@ const Nav = ({ logged, setLogged }) => {
         }
     }
     window.addEventListener('scroll', changeBackground);
-    // Scroll effect---
+    // Scroll effect---¨
+    const [navOpen, setNavOpen] = useState(false);
+    console.log(navOpen);
+    const navOpenHandler = () => {
+        if (navOpen) {
+            document.body.style.overflow = "visible";
+            document.body.style.overflowY = "overlay";
+            setNavOpen(false);
+        }
+        else {
+            document.body.style.overflow = "hidden";
+            setNavOpen(true);
+        }
+    }
 
     return (
         <>
             <nav className={navbar ? "active" : ""}>
-                <div className="nav">
+                <div className={navOpen ? "nav nav-fixed" : "nav"}>
                     <Link to='/'><h1><img src={logo_img} alt="logo" /></h1></Link>
                     <div className="nav-items">
                         <ul>
@@ -61,7 +74,7 @@ const Nav = ({ logged, setLogged }) => {
                         </ul>
                     </div>
                     {logged ? <button onClick={logOut} className="button-nav">Odhlásit se</button> : <Link to='/login' className="button-nav">Přihlásit se</Link>}
-                    <input type="checkbox" id="active"></input>
+                    <input type="checkbox" id="active" onClick={navOpenHandler}></input>
                     <label for="active" className="menu-btn"><FontAwesomeIcon icon={faBars} /></label>
                     <div class="wrapper">
                         <ul>
@@ -82,16 +95,27 @@ const Nav = ({ logged, setLogged }) => {
                             <li>
                                 {
                                     logged ?
-                                        <li>
-                                            <Link to='/account'>
-                                                Profil
-                                </Link>
-                                        </li>
+
+                                        <Link to='/account'>
+                                            Profil
+                                        </Link>
+
                                         : ""
                                 }
                             </li>
                             <li>
                                 {logged ? <button onClick={logOut} className="button-nav">Odhlásit se</button> : <Link to='/login' className="button-nav">Přihlásit se</Link>}
+                            </li>
+                            <li>
+                                {logged ?
+                                    <Link to='/' onClick={logOut}>
+                                        Odhlásit se
+                                    </Link>
+                                    :
+                                    <Link to='/login' >
+                                        Přihlásit se
+                                    </Link>
+                                }
                             </li>
                         </ul>
                     </div>
