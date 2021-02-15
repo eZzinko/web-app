@@ -9,6 +9,9 @@ const Nav = ({ logged, setLogged }) => {
     const logOut = () => {
         firebase.auth().signOut();
         setLogged(false);
+
+        setCloseRef(!closeRef);
+        document.body.style.overflow = "visible";
     };
 
     // Scroll effect
@@ -24,7 +27,6 @@ const Nav = ({ logged, setLogged }) => {
     window.addEventListener('scroll', changeBackground);
     // Scroll effect---¨
     const [navOpen, setNavOpen] = useState(false);
-    console.log(navOpen);
     const navOpenHandler = () => {
         if (navOpen) {
             document.body.style.overflow = "visible";
@@ -35,6 +37,11 @@ const Nav = ({ logged, setLogged }) => {
             document.body.style.overflow = "hidden";
             setNavOpen(true);
         }
+    }
+    const [closeRef, setCloseRef] = useState(false);
+    const closeRefHandle = () => {
+        setCloseRef(!closeRef);
+        document.body.style.overflow = "visible";
     }
 
     return (
@@ -74,21 +81,21 @@ const Nav = ({ logged, setLogged }) => {
                         </ul>
                     </div>
                     {logged ? <button onClick={logOut} className="button-nav">Odhlásit se</button> : <Link to='/login' className="button-nav">Přihlásit se</Link>}
-                    <input type="checkbox" id="active" onClick={navOpenHandler}></input>
+                    <input type="checkbox" id="active" onClick={navOpenHandler} checked={closeRef} onChange={closeRefHandle}></input>
                     <label for="active" className="menu-btn"><FontAwesomeIcon icon={faBars} /></label>
                     <div class="wrapper">
                         <ul>
                             <li>
-                                <Link to='/'>
+                                <Link to='/' onClick={closeRefHandle}>
                                     Domů
                             </Link></li>
                             <li>
-                                <Link to='/receptar'>
+                                <Link to='/receptar' onClick={closeRefHandle}>
                                     Receptář
                             </Link>
                             </li>
                             <li>
-                                <Link to='/create'>
+                                <Link to='/create' onClick={closeRefHandle}>
                                     Můj recept
                             </Link>
                             </li>
@@ -96,15 +103,12 @@ const Nav = ({ logged, setLogged }) => {
                                 {
                                     logged ?
 
-                                        <Link to='/account'>
+                                        <Link to='/account' onClick={closeRefHandle}>
                                             Profil
                                         </Link>
 
                                         : ""
                                 }
-                            </li>
-                            <li>
-                                {logged ? <button onClick={logOut} className="button-nav">Odhlásit se</button> : <Link to='/login' className="button-nav">Přihlásit se</Link>}
                             </li>
                             <li>
                                 {logged ?
