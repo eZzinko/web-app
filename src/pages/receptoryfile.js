@@ -6,7 +6,8 @@ const ReceptoryFile = ({ recipe }) => {
     const backgroundImage = {
         backgroundImage: `url(${recipe.cover})`
     }
-
+    const timestamp = new Date(recipe.createdAt);
+    const humanDate = new Date(timestamp).getDate() + '. ' + new Date(timestamp).getMonth() + '. ' + new Date(timestamp).getFullYear()
 
 
     return (
@@ -41,8 +42,9 @@ const ReceptoryFile = ({ recipe }) => {
                         />
                     </div>
                     <div className="side-bar">
-                        <span>uuid()</span>
-
+                        <h6>{humanDate}</h6>
+                        <h5>{recipe.artist}</h5>
+                        <h4>{recipe.category} <span>{recipe.subCategory}</span></h4>
                     </div>
                 </div>
             </div>

@@ -39,6 +39,7 @@ function App() {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
+        console.log(items);
       });
       setRecipes(items);
     });

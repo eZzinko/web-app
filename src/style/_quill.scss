@@ -1,0 +1,31 @@
+.quill {
+    .ql-editor {
+        h1 {
+            color: $BLACK;
+            text-align: left;
+            font-size: 26px !important;
+            line-height: 34px;
+        }
+
+        h2 {
+            color: $BLACK;
+            text-align: left;
+            font-size: 22px !important;
+            line-height: 30px;
+        }
+
+        h3 {
+            color: $BLACK;
+            font-size: 18px !important;
+            line-height: 26px;
+        }
+
+        ul,
+        ol {
+
+            li {
+                margin-top: 10px;
+            }
+        }
+    }
+}
