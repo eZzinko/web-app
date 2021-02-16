@@ -10,6 +10,9 @@ const BlogCard = ({ recipe, setRecipe, recipes, id }) => {
         const selectedRecipe = recipes.filter((state) => state.id === id);
         setRecipe(selectedRecipe[0]);
     }
+    const timestamp = new Date(recipe.createdAt);
+    const humanDate = new Date(timestamp).getDate() + '. ' + new Date(timestamp).getMonth() + '. ' + new Date(timestamp).getFullYear();
+
     return (
         <Link to={`/receptar/${recipe.id}`} className="blogcard">
             <div className="blogcard" onClick={linkHandler}>
@@ -21,7 +24,7 @@ const BlogCard = ({ recipe, setRecipe, recipes, id }) => {
                     <hr />
                     <div className="text-area-footer">
                         <span>Napsal: <span>{recipe.artist}</span></span>
-                        <span>{recipe.createdAt}</span>
+                        <span>{humanDate}</span>
                     </div>
                 </div>
             </div>

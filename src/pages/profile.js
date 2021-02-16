@@ -7,7 +7,7 @@ const Profile = () => {
 
     const { currentUser } = useContext(AuthContext);
     const [userName, setUserName] = useState("");
-    const [userTel, setUserTel] = useState("");
+    // const [userTel, setUserTel] = useState("");
 
     const user = firebase.auth().currentUser;
 
@@ -41,7 +41,7 @@ const Profile = () => {
                             id="phone"
                             type="text"
                             defaultValue={currentUser.phoneNumber}
-                            onChange={(e) => setUserTel(e.target.value)}
+                            // onChange={(e) => setUserTel(e.target.value)}
                             placeholder="+420 123 456 789"
                         />
                         <label htmlFor="email">Email</label>

@@ -10,13 +10,13 @@ export const AuthProvider = ({ children, setLogged, currentUser, setCurrentUser 
     const [loading, setLoading] = useState(true);
 
 
-    // console.log(currentUser);
+
     if (currentUser === null) {
-        // console.log("Rozvná se null");
+
         setLogged(false)
     }
     else {
-        // console.log("Nerovná se null");
+
         setLogged(true);
     }
 
@@ -25,7 +25,9 @@ export const AuthProvider = ({ children, setLogged, currentUser, setCurrentUser 
             setCurrentUser(user);
             setLoading(false);
         });
-    }, []);
+    },
+        // eslint-disable-next-line 
+        []);
 
     if (loading) {
         return (

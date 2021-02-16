@@ -29,12 +29,13 @@ const Nav = ({ logged, setLogged }) => {
     const [navOpen, setNavOpen] = useState(false);
     const navOpenHandler = () => {
         if (navOpen) {
-            document.body.style.overflow = "visible";
-            document.body.style.overflowY = "overlay";
+
+            document.body.style.overflow = "hidden";
             setNavOpen(false);
         }
         else {
-            document.body.style.overflow = "hidden";
+            document.body.style.overflow = "visible";
+            document.body.style.overflowY = "overlay";
             setNavOpen(true);
         }
     }

@@ -1,9 +1,12 @@
 import React from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.bubble.css';
 
 const ReceptoryFile = ({ recipe }) => {
     const backgroundImage = {
         backgroundImage: `url(${recipe.cover})`
     }
+
 
 
     return (
@@ -31,7 +34,11 @@ const ReceptoryFile = ({ recipe }) => {
                 </div>
                 <div className="content-box">
                     <div className="content">
-
+                        <ReactQuill
+                            value={recipe.content}
+                            theme={"bubble"}
+                            readOnly="true"
+                        />
                     </div>
                     <div className="side-bar">
                         <span>uuid()</span>
