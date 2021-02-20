@@ -1,15 +1,34 @@
 import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const ReceptoryFile = ({ recipe }) => {
+import firebase from '../firebase';
+import { useHistory } from 'react-router-dom';
+
+const ReceptoryFile = ({ recipe, logged }) => {
     const backgroundImage = {
         backgroundImage: `url(${recipe.cover})`
     }
     const timestamp = new Date(recipe.createdAt);
     const humanDate = new Date(timestamp).getDate() + '. ' + new Date(timestamp).getMonth() + '. ' + new Date(timestamp).getFullYear()
 
+    const history = useHistory();
+    const ref = firebase.firestore().collection("recipe");
+    const removeDocs = () => {
+        ref
+            .doc(recipe.id)
+            .delete()
+            .then(() => {
+                console.log("Document successfully deleted!");
+                history.push("/receptar");
+            })
+            .catch((err) => {
+                console.error("Error removing document: ", err);
 
+            })
+    }
     return (
         <>
             <div className="cover" style={backgroundImage}>
@@ -42,6 +61,7 @@ const ReceptoryFile = ({ recipe }) => {
                         />
                     </div>
                     <div className="side-bar">
+                        {logged ? <FontAwesomeIcon icon={faTrash} onClick={removeDocs} /> : ""}
                         <h6>{humanDate}</h6>
                         <h5>{recipe.artist}</h5>
                         <h4>{recipe.category} <span>{recipe.subCategory}</span></h4>

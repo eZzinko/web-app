@@ -3,17 +3,17 @@ import { AuthContext } from '../auth/Auth';
 import firebase from '../firebase';
 
 
-const Profile = () => {
+const Profile = ({ recipes }) => {
 
     const { currentUser } = useContext(AuthContext);
     const [userName, setUserName] = useState("");
     // const [userTel, setUserTel] = useState("");
-
+    console.log({ currentUser });
     const user = firebase.auth().currentUser;
 
     const setUserData = () => {
         user.updateProfile({
-            displayName: userName
+            displayName: userName,
         })
         window.alert("Jméno bylo úspěšně změněno!");
     }

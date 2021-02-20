@@ -1,4 +1,20 @@
 .quill {
+    .ql-toolbar {
+        &.ql-snow {
+            border: 1px solid $GRAY;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+        }
+    }
+
+    .ql-container {
+        &.ql-snow {
+            border: 1px solid $WHITE;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
+        }
+    }
+
     .ql-editor {
         h1 {
             color: $BLACK;

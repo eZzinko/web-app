@@ -19,6 +19,7 @@ import data from './utils/util';
 import firebase from './firebase';
 import PrivateRoute from "./components/privateRoute";
 import LoginPage from "./pages/loginPage";
+import PlaceholderCard from "./components/placeholderCard";
 
 function App() {
 
@@ -33,13 +34,13 @@ function App() {
   const [logged, setLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
-  function getRecipes() {
+  async function getRecipes() {
     setLoading(true);
     ref.onSnapshot((querySnapshot) => {
       const items = [];
       querySnapshot.forEach((doc) => {
         items.push(doc.data());
-        console.log(items);
+        // console.log(items);
       });
       setRecipes(items);
     });
@@ -52,9 +53,14 @@ function App() {
     // eslint-disable-next-line
   }, []);
 
+  const loadingArr = [];
+  for (let i = 0; i < 9; i++) {
+    loadingArr.push(<PlaceholderCard />);
+  }
+
   if (loading) {
     return (
-      <h1>Loading...</h1>
+      { loadingArr }
     )
   }
 
@@ -67,9 +73,9 @@ function App() {
           <Switch>
             <Route path="/" exact render={(props) => <Mainpage recipes={recipes} recipe={recipe} setRecipe={setRecipe} mainImgs={mainImgs} mainImg={mainImg} setMainImg={setMainImg} />} />
             <Route path="/receptar" exact render={(props) => <Receptory recipes={recipes} setRecipe={setRecipe} />} />
-            <Route path="/receptar/:id" render={(props) => <ReceptoryFile recipe={recipe} />} />
+            <Route path="/receptar/:id" render={(props) => <ReceptoryFile recipe={recipe} logged={logged} />} />
             <PrivateRoute path="/create" component={Create} />
-            <PrivateRoute path="/account" component={Profile} props={currentUser} />
+            <PrivateRoute path="/account" component={Profile} props={currentUser} recipes={recipes} />
             <Route path="/login" render={(props) => <LoginPage setLogged={setLogged} />} />
           </Switch>
         </AuthProvider>
