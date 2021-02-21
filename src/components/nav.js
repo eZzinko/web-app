@@ -83,8 +83,8 @@ const Nav = ({ logged, setLogged }) => {
                     </div>
                     {logged ? <button onClick={logOut} className="button-nav">Odhlásit se</button> : <Link to='/login' className="button-nav">Přihlásit se</Link>}
                     <input type="checkbox" id="active" onClick={navOpenHandler} checked={closeRef} onChange={closeRefHandle}></input>
-                    <label for="active" className="menu-btn"><FontAwesomeIcon icon={faBars} /></label>
-                    <div class="wrapper">
+                    <label htmlFor="active" className="menu-btn"><FontAwesomeIcon icon={faBars} /></label>
+                    <div className="wrapper">
                         <ul>
                             <li>
                                 <Link to='/' onClick={closeRefHandle}>

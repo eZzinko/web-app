@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BlogCard from '../components/blogcard';
 import SearchBar from "../components/searchBar";
 import Fuse from 'fuse.js';
@@ -30,17 +30,20 @@ const Receptory = ({ recipes, setRecipe }) => {
     }
 
     const filterHandler = (filter) => {
-        // console.log(filter);
+        console.log(filter);
         if (activeFilter) {
-            setFilterValue(false);
+            setFilterValue(filter);
             setActiveFilter(false);
         }
         else {
             setFilterValue(filter);
             setActiveFilter(true);
         }
-
     }
+
+    useEffect(() => {
+        document.title = `Receptář | Moje kuchařka`;
+    })
 
     return (
         <>
@@ -59,9 +62,9 @@ const Receptory = ({ recipes, setRecipe }) => {
                     <h2>Najděte si, na co máte chuť</h2>
                     <SearchBar placeholder="Na co máte chuť" onChange={(e) => searchHandler(e.target.value)} />
                     <div className="filter-bar">
-                        <div class="dropdown">
-                            <button class="dropbtn">Snídaně</button>
-                            <div class="dropdown-content">
+                        <div className="dropdown">
+                            <button className="dropbtn">Snídaně</button>
+                            <div className="dropdown-content">
                                 <button value="Anglická snídaně" onClick={(e) => filterHandler(e.target.value)}>Anglická</button>
                                 <button value="Americká snídaně" onClick={(e) => filterHandler(e.target.value)}>Americká</button>
                                 <button value="Kontinentální snídaně" onClick={(e) => filterHandler(e.target.value)}>Kontinentální</button>
@@ -69,21 +72,21 @@ const Receptory = ({ recipes, setRecipe }) => {
                             </div>
                         </div>
 
-                        <div class="dropdown">
-                            <button class="dropbtn" value="Svačina" onClick={(e) => filterHandler(e.target.value)}>Svačina</button>
+                        <div className="dropdown">
+                            <button className="dropbtn" value="Svačina" onClick={(e) => filterHandler(e.target.value)}>Svačina</button>
                         </div>
 
-                        <div class="dropdown">
-                            <button class="dropbtn">Předkrm</button>
-                            <div class="dropdown-content">
+                        <div className="dropdown">
+                            <button className="dropbtn">Předkrm</button>
+                            <div className="dropdown-content">
                                 <button value="Studené předkrmy" onClick={(e) => filterHandler(e.target.value)}>Studené</button>
                                 <button value="Teplé předkrmy" onClick={(e) => filterHandler(e.target.value)}>Teplé</button>
                             </div>
                         </div>
 
-                        <div class="dropdown">
-                            <button class="dropbtn">Polévka</button>
-                            <div class="dropdown-content">
+                        <div className="dropdown">
+                            <button className="dropbtn">Polévka</button>
+                            <div className="dropdown-content">
                                 <button value="Slaná polévka" onClick={(e) => filterHandler(e.target.value)}>Slaná</button>
                                 <button value="Sladká polévka" onClick={(e) => filterHandler(e.target.value)}>Sladká</button>
                                 <button value="Studená polévka" onClick={(e) => filterHandler(e.target.value)}>Studená</button>
@@ -93,9 +96,9 @@ const Receptory = ({ recipes, setRecipe }) => {
                             </div>
                         </div>
 
-                        <div class="dropdown">
-                            <button class="dropbtn">Hlavní chod</button>
-                            <div class="dropdown-content">
+                        <div className="dropdown">
+                            <button className="dropbtn">Hlavní chod</button>
+                            <div className="dropdown-content">
                                 <button value="Maso" onClick={(e) => filterHandler(e.target.value)}>Masitá</button>
                                 <button value="Ryba" onClick={(e) => filterHandler(e.target.value)}>Rybí</button>
                                 <button value="Vegetarián" onClick={(e) => filterHandler(e.target.value)}>Vegetariánské</button>
@@ -112,10 +115,10 @@ const Receptory = ({ recipes, setRecipe }) => {
                         </div> */}
                     </div>
                     <div className="row">
-                        {filterValue ? data.filter(person => person.artist == filterValue).map((recipe) => (
-                            <BlogCard recipe={recipe} setRecipe={setRecipe} recipes={recipes} id={recipe.id} />
+                        {filterValue ? data.filter(person => person.subCategory === filterValue).map((recipe) => (
+                            <BlogCard recipe={recipe} setRecipe={setRecipe} recipes={recipes} id={recipe.id} key={recipe.id} />
                         )) : data.map((recipe) => (
-                            <BlogCard recipe={recipe} setRecipe={setRecipe} recipes={recipes} id={recipe.id} />
+                            <BlogCard recipe={recipe} setRecipe={setRecipe} recipes={recipes} id={recipe.id} key={recipe.id} />
                         ))}
                     </div>
                 </div>

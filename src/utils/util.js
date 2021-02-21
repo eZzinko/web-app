@@ -2,9 +2,9 @@ import img from '../img/placeholder.png'
 function chillHop() {
     return [
         {
-            main: true,
+            main: false,
             createdAt: "12. 1. 2020",
-            id: "6d11364c-3c06-48c5-8bea-6bade1e1b44c",
+            id: "222222-3c06-48c5-8bea-6bade1e1b44c",
             name: "A",
             madePrice: "150",
             madeTime: "75",
@@ -24,7 +24,7 @@ function chillHop() {
         {
             main: true,
             createdAt: "12. 1. 2020",
-            id: "6d11364c-3c06-48c5-8bea-6bade1e1b411",
+            id: "11111-3c06-48c5-8bea-6bade1e1b411",
             name: "B",
             madePrice: "150",
             madeTime: "75",

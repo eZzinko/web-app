@@ -8,9 +8,9 @@ import quillEmoji from 'quill-emoji';
 import 'react-quill/dist/quill.snow.css';
 
 
-const Create = () => {
+const Edit = ({ recipe, recipeLink }) => {
     const history = useHistory();
-
+    console.log("[recipe]: ", recipe);
     const ref = firebase.firestore().collection("recipe");
     const { currentUser } = useContext(AuthContext);
 
@@ -25,14 +25,19 @@ const Create = () => {
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
-    const [content, setContent] = useState(null);
+    const [content, setContent] = useState();
 
-    function addRecipe(newRecipe) {
+    console.log("[ID]: ", recipe.id);
+
+    function addRecipe(editRecipe) {
         ref
-            .doc(newRecipe.id)
-            .set(newRecipe)
+            .doc(editRecipe.id)
+            .set(editRecipe)
+            .then(() => {
+                console.log("Document successfully written!");
+            })
             .catch((err) => {
-                console.error(err);
+                console.error("Error writing document: ", err);
             })
         history.push("/receptar");
     }
@@ -71,6 +76,7 @@ const Create = () => {
     ]
     const quillHandleChange = (value) => {
         setContent(value);
+        console.log(content);
     }
 
 
@@ -82,30 +88,31 @@ const Create = () => {
         <>
             <div className="cover">
                 <div className="overlay"></div>
-                <h2><input type="text" onChange={(e) => setCover(e.target.value)} /></h2>
+                <h2><input type="text" onChange={(e) => setCover(e.target.value)} value={recipe.cover} /></h2>
                 <div className="cover-panel-full">
                     <div className="cover-panel">
                         <div className="item">
-                            <input type="text" onChange={(e) => setMadeTime(e.target.value)} placeholder="MadeTime" /> min
+                            <input type="text" onChange={(e) => setMadeTime(e.target.value)} placeholder="MadeTime" value={recipe.madeTime} /> min
                         </div>
                         <div className="item">
-                            <h3><input type="text" onChange={(e) => setName(e.target.value)} placeholder="Name" /></h3>
+                            <h3><input type="text" onChange={(e) => setName(e.target.value)} placeholder="Name" defaultValue={recipe.name} /></h3>
                         </div>
                         <div className="item">
-                            <input type="text" onChange={(e) => setMadePrice(e.target.value)} placeholder="MadePrice" />  Kč
+                            <input type="text" onChange={(e) => setMadePrice(e.target.value)} placeholder="MadePrice" value={recipe.madePrice} />  Kč
                         </div>
                     </div>
                 </div>
             </div>
             <div className="body-align">
                 <div className="short-info">
-                    <span><input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Description" /></span>
+                    <span><input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Description" value={recipe.description} /></span>
                 </div>
                 <div className="content-box">
                     <div className="content">
                         <ReactQuill
                             onChange={quillHandleChange}
                             value={content}
+                            // defaultValue={recipe.content}
                             theme="snow"
                             modules={modules}
                             formats={formats}
@@ -125,4 +132,4 @@ const Create = () => {
         </>
     );
 }
-export default Create;
+export default Edit;

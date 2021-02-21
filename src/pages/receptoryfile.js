@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 
 import firebase from '../firebase';
 import { useHistory } from 'react-router-dom';
@@ -29,6 +30,10 @@ const ReceptoryFile = ({ recipe, logged }) => {
 
             })
     }
+
+    useEffect(() => {
+        document.title = `${recipe.name} | Moje kuchařka`;
+    })
     return (
         <>
             <div className="cover" style={backgroundImage}>
@@ -57,11 +62,12 @@ const ReceptoryFile = ({ recipe, logged }) => {
                         <ReactQuill
                             value={recipe.content}
                             theme={"bubble"}
-                            readOnly="true"
+                            readOnly={true}
                         />
                     </div>
                     <div className="side-bar">
                         {logged ? <FontAwesomeIcon icon={faTrash} onClick={removeDocs} /> : ""}
+                        {logged ? <Link to={`/edit/${recipe.id}`}><FontAwesomeIcon icon={faEdit} /></Link> : ""}
                         <h6>{humanDate}</h6>
                         <h5>{recipe.artist}</h5>
                         <h4>{recipe.category} <span>{recipe.subCategory}</span></h4>

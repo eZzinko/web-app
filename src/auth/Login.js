@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import firebase from "../firebase";
 import { useHistory } from 'react-router-dom';
 
@@ -38,13 +38,16 @@ const Login = ({ setLogged }) => {
         setEmail("");
         setPassword("");
     };
+    useEffect(() => {
+        document.title = `Přihlásit se | Moje kuchařka`;
+    })
 
     return (
         <>
 
             <div className="login-page">
                 <div className="login-card">
-                    <div className="login-card-header">,
+                    <div className="login-card-header">
                         <h3>Přihlásit se</h3>
                     </div>
                     <div className="login-card-body">

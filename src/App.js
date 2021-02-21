@@ -12,6 +12,7 @@ import Receptory from "./pages/receptory";
 import Nav from "./components/nav";
 import ReceptoryFile from "./pages/receptoryfile";
 import Profile from './pages/profile';
+import Edit from './pages/edit';
 
 
 //Firebase
@@ -28,6 +29,8 @@ function App() {
 
   const [recipes, setRecipes] = useState(data());
   const [recipe, setRecipe] = useState(recipes[0]);
+  // const [recipes, setRecipes] = useState();
+  // const [recipe, setRecipe] = useState();
   const [loading, setLoading] = useState(false);
   const [mainImgs] = useState(recipes.filter(button => button.main === true));
   const [mainImg, setMainImg] = useState(mainImgs[0]);
@@ -45,7 +48,6 @@ function App() {
       setRecipes(items);
     });
     setLoading(false);
-
   }
 
   useEffect(() => {
@@ -57,13 +59,11 @@ function App() {
   for (let i = 0; i < 9; i++) {
     loadingArr.push(<PlaceholderCard />);
   }
-
   if (loading) {
     return (
       { loadingArr }
     )
   }
-
   return (
 
     <Router>
@@ -76,6 +76,7 @@ function App() {
             <Route path="/receptar/:id" render={(props) => <ReceptoryFile recipe={recipe} logged={logged} />} />
             <PrivateRoute path="/create" component={Create} />
             <PrivateRoute path="/account" component={Profile} props={currentUser} recipes={recipes} />
+            <Route path="/edit/:id" render={(props) => <Edit recipe={recipe} />} />
             <Route path="/login" render={(props) => <LoginPage setLogged={setLogged} />} />
           </Switch>
         </AuthProvider>

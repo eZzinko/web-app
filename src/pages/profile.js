@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../auth/Auth';
 import firebase from '../firebase';
 
@@ -8,7 +8,7 @@ const Profile = ({ recipes }) => {
     const { currentUser } = useContext(AuthContext);
     const [userName, setUserName] = useState("");
     // const [userTel, setUserTel] = useState("");
-    console.log({ currentUser });
+    console.log(userName);
     const user = firebase.auth().currentUser;
 
     const setUserData = () => {
@@ -17,6 +17,10 @@ const Profile = ({ recipes }) => {
         })
         window.alert("Jméno bylo úspěšně změněno!");
     }
+
+    useEffect(() => {
+        document.title = `${currentUser.displayName} | Moje kuchařka`;
+    })
 
     return (
         <>
@@ -31,8 +35,7 @@ const Profile = ({ recipes }) => {
                         <input
                             id="name"
                             type="test"
-                            // defaultValue={currentUser.displayName}
-                            value={userName}
+                            defaultValue={currentUser.displayName}
                             onChange={(e) => setUserName(e.target.value)}
                             placeholder="Jméno a příjmení"
                         />
@@ -40,7 +43,7 @@ const Profile = ({ recipes }) => {
                         <input
                             id="phone"
                             type="text"
-                            defaultValue={currentUser.phoneNumber}
+                            // defaultValue={currentUser.phoneNumber}
                             // onChange={(e) => setUserTel(e.target.value)}
                             placeholder="+420 123 456 789"
                         />
@@ -48,7 +51,7 @@ const Profile = ({ recipes }) => {
                         <input
                             id="email"
                             type="email"
-                            defaultValue={currentUser.email}
+                            // defaultValue={currentUser.email}
                             // onChange={(e) => setPassword(e.target.value)}
                             placeholder="example@example.com"
                             disabled
@@ -70,7 +73,7 @@ const Profile = ({ recipes }) => {
                             disabled
                             id="name"
                             type="test"
-                            value={currentUser.displayName}
+                            defaultValue={currentUser.displayName}
                             // onChange={(e) => setEmail(e.target.value)}
                             placeholder="Jméno a příjmení"
                         />
@@ -79,7 +82,6 @@ const Profile = ({ recipes }) => {
                             disabled
                             id="phone"
                             type="text"
-                            value={currentUser.phoneNumber}
                             // onChange={(e) => setPassword(e.target.value)}
                             placeholder="+420 123 456 789"
                         />

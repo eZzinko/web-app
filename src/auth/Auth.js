@@ -10,21 +10,29 @@ export const AuthProvider = ({ children, setLogged, currentUser, setCurrentUser 
     const [loading, setLoading] = useState(true);
 
 
+    useEffect(() => {
+        if (currentUser === null) {
 
-    if (currentUser === null) {
+            setLogged(false)
+        }
+        else {
 
-        setLogged(false)
-    }
-    else {
+            setLogged(true);
+        }
+    })
 
-        setLogged(true);
-    }
 
     useEffect(() => {
-        firebase.auth().onAuthStateChanged((user) => {
-            setCurrentUser(user);
-            setLoading(false);
-        });
+        let mounted = true;
+        if (mounted) {
+
+
+            firebase.auth().onAuthStateChanged((user) => {
+                setCurrentUser(user);
+                setLoading(false);
+            });
+        }
+        return () => mounted = false;
     },
         // eslint-disable-next-line 
         []);
