@@ -1,4 +1,7 @@
+//Modules
 import React, { useContext, useState, useEffect } from 'react';
+
+//FIrebase
 import { AuthContext } from '../auth/Auth';
 import firebase from '../firebase';
 
@@ -7,8 +10,6 @@ const Profile = ({ recipes }) => {
 
     const { currentUser } = useContext(AuthContext);
     const [userName, setUserName] = useState("");
-    // const [userTel, setUserTel] = useState("");
-    console.log(userName);
     const user = firebase.auth().currentUser;
 
     const setUserData = () => {

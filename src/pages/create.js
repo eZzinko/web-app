@@ -1,44 +1,64 @@
+//Modules
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { v4 as uuid4 } from "uuid";
+
+//Firebase with Authentification
 import firebase from '../firebase';
 import { AuthContext } from '../auth/Auth';
+
+//React Quill module
 import ReactQuill, { Quill } from 'react-quill';
 import quillEmoji from 'quill-emoji';
 import 'react-quill/dist/quill.snow.css';
 
 
 const Create = () => {
+
+    //Set document title
+    useEffect(() => {
+        document.title = `Nový recept | Moje kuchařka`;
+    })
+
+    //React-router-dom history to change router link
     const history = useHistory();
 
+    //Firebase initialization for Firestore collection 
     const ref = firebase.firestore().collection("recipe");
+
+    //Firebase userState
     const { currentUser } = useContext(AuthContext);
 
-    const [artist, setArtist] = useState(currentUser.displayName);
+    //Firebase collection document states
+    const [artist, setArtist] = useState(currentUser.displayName);                  //Set by current logged user
     const [cover, setCover] = useState("");
-    const [createdAt, setCreatedAt] = useState(Date.now());
+    const [createdAt, setCreatedAt] = useState(Date.now());                 //Set by current time
     const [description, setDescription] = useState("some text testin");
     const [madePrice, setMadePrice] = useState("");
     const [madeTime, setMadeTime] = useState("");
     // eslint-disable-next-line
-    const [main, setMain] = useState(false);
+    const [main, setMain] = useState(false);                        //Default main is disable - must be done manualy
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
-    const [content, setContent] = useState(null);
+    const [content, setContent] = useState(null);                   //Set by Quill
 
+    //Open Firestore connection and write document
     function addRecipe(newRecipe) {
         ref
             .doc(newRecipe.id)
             .set(newRecipe)
             .catch((err) => {
-                console.error(err);
+                console.error("[Add recipe error]: ", err);
             })
-        history.push("/receptar");
+        history.push("/receptar");                  //After write change router
     }
 
-    // Quill
+    //Quill
+    //Quill emoji setup
     const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
+
+    //Write emoji to subscription of Quill
     Quill.register({
         'formats/emoji': EmojiBlot,
         'modules/emoji-shortname': ShortNameEmoji,
@@ -46,6 +66,7 @@ const Create = () => {
         'modules/emoji-textarea': TextAreaEmoji
     }, true);
 
+    //Quill modules - set what is displayed
     const modules = {
         toolbar: {
             container: [
@@ -63,20 +84,18 @@ const Create = () => {
         'emoji-shortname': true,
     };
 
+    //Quill formats - set what is working
     const formats = [
         'header', 'font', 'size',
         'bold', 'italic', 'underline', 'strike', 'blockquote',
         'list', 'bullet', 'indent', 'align',
         'link', 'image', 'background', 'color', 'emoji'
     ]
+
+    //Change state content based on user input
     const quillHandleChange = (value) => {
         setContent(value);
     }
-
-
-    useEffect(() => {
-        document.title = `Nový recept | Moje kuchařka`;
-    })
 
     return (
         <>

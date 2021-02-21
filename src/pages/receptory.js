@@ -1,24 +1,42 @@
+//Modules
 import React, { useEffect, useState } from 'react';
-import BlogCard from '../components/blogcard';
-import SearchBar from "../components/searchBar";
 import Fuse from 'fuse.js';
 
+//Components
+import BlogCard from '../components/blogcard';
+import SearchBar from "../components/searchBar";
+
 const Receptory = ({ recipes, setRecipe }) => {
+
+    //Set document title
+    useEffect(() => {
+        document.title = `Receptář | Moje kuchařka`;
+    })
+
+    //Internal STATE configuration
     const [data, setData] = useState(recipes);
     const [filterValue, setFilterValue] = useState(false);
     const [activeFilter, setActiveFilter] = useState(false);
 
+    //Fuse module SEARCH
+    //User input
     const searchHandler = (pattern) => {
+
+        //Clear filter if no data to search
         if (!pattern) {
             setData(recipes);
             return;
         }
 
+        //Select fields to search from
         const fuse = new Fuse(data, {
             keys: ["artist", "category", "name", "subCategory"],
         });
+
         const result = fuse.search(pattern);
         const matches = [];
+
+        //Filter data compared to result
         if (!result.length) {
             setData([]);
         } else {
@@ -29,6 +47,7 @@ const Receptory = ({ recipes, setRecipe }) => {
         }
     }
 
+    //Filter data from DropDown select
     const filterHandler = (filter) => {
         console.log(filter);
         if (activeFilter) {
@@ -40,10 +59,6 @@ const Receptory = ({ recipes, setRecipe }) => {
             setActiveFilter(true);
         }
     }
-
-    useEffect(() => {
-        document.title = `Receptář | Moje kuchařka`;
-    })
 
     return (
         <>
