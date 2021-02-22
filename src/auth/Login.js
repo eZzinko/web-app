@@ -25,7 +25,7 @@ const Login = ({ setLogged }) => {
             .auth()
             .signInWithEmailAndPassword(email, password)
             .then(() => {
-                resetInput();
+                // resetInput();
             })
             .catch((err) => {
                 console.error(err);

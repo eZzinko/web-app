@@ -1,11 +1,13 @@
 //Modules
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuid4 } from "uuid";
+import firebase from '../firebase';
 
 //Components
 import Infocard from '../components/infocard';
 import InfoLargeCard from "../components/infolargecard";
 import CategoryCard from '../components/categoryCard';
+import PlaceholderCard from '../components/placeholderCard';
 
 const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
 
@@ -15,22 +17,65 @@ const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg })
     })
 
     //Filter categories
-    const categoryArr = [];
-    const cardArr = [];
+    // const categoryArr = [];
+    // const cardArr = [];
 
     // eslint-disable-next-line
-    recipes.map(tag => {
-        if (categoryArr.indexOf(tag.category) === -1) {
-            categoryArr.push(tag.category);
+    // recipes.map(tag => {
+    //     if (categoryArr.indexOf(tag.category) === -1) {
+    //         categoryArr.push(tag.category);
+    //     }
+    // })
+
+    // categoryArr.forEach((item) => {
+    //     cardArr.push(<CategoryCard item={item} key={uuid4()} />);
+    // });
+
+    // console.log("[Categories]: ", categoryArr);
+
+
+
+
+
+
+    const ref = firebase.firestore().collection("recipe");
+
+    const [firestoreLoading, setFirestoreLoading] = useState(true);
+
+    const [asyncData, setAsyncData] = useState([]);
+    const [asyncCategory, setAsyncCategory] = useState([]);
+
+    const getRecipes = async () => {
+        const allArr = [];
+        const categoryArr = [];
+        const allReciper = await ref.get();
+        for (const doc of allReciper.docs) {
+            allArr.push(doc.data());
+            categoryArr.push(doc.data().category);
+        }
+        setAsyncData(allArr);
+        setAsyncCategory(categoryArr);
+    }
+    const uniqeCat = [...new Set(asyncCategory)];
+
+    //Execute API get request
+    useEffect(() => {
+        getRecipes();
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        if (asyncData.length > 0) {
+            console.log("Undefined");
+            setFirestoreLoading(false);
         }
     })
 
-    categoryArr.forEach((item) => {
-        cardArr.push(<CategoryCard item={item} key={uuid4()} />);
-    });
+    const placeholderArr = []
 
-    console.log("[Categories]: ", categoryArr);
-
+    for (let i = 0; i < 6; i++) {
+        placeholderArr.push(<PlaceholderCard />);
+    }
     return (
         <>
             <div className="header">
@@ -52,7 +97,9 @@ const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg })
                 <div className="category">
                     <h2>Kategorie</h2>
                     <div className="row">
-                        {cardArr}
+                        {firestoreLoading ? placeholderArr : uniqeCat.map((data) => {
+                            return (<CategoryCard item={data} />)
+                        })}
                     </div>
                 </div>
             </div>

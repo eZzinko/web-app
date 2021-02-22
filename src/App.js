@@ -41,22 +41,38 @@ function App() {
   const [logged, setLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
-  //Firestore API get collection
-  async function getRecipes() {
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
-      });
-      setRecipes(items);
-    });
-  }
+  // const [asyncData, setAsyncData] = useState([]);
 
-  //Execute API get request
-  useEffect(() => {
-    getRecipes();
-    // eslint-disable-next-line
-  }, []);
+  // Firestore API get collection
+  // const getRecipes = () => {
+  //   ref.onSnapshot((querySnapshot) => {
+  //     const items = [];
+  //     querySnapshot.forEach((doc) => {
+  //       items.push(doc.data());
+  //     });
+  //     setRecipes(items);
+  //   });
+  // }
+
+  // const getRecipes = async () => {
+  //   const allArr = [];
+  //   const allReciper = await ref.get();
+  //   for (const doc of allReciper.docs) {
+  //     // console.log(doc.id, '=>', doc.data());
+  //     allArr.push(doc.data());
+  //   }
+  //   console.log(allArr);
+  //   setAsyncData(allArr);
+  //   console.log("[asyncData in]: ", asyncData);
+  // }
+
+  // console.log("[asyncData out]: ", asyncData);
+
+  // //Execute API get request
+  // useEffect(() => {
+  //   getRecipes();
+  //   // eslint-disable-next-line
+  // }, []);
 
   return (
 
