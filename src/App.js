@@ -41,6 +41,10 @@ function App() {
   const [logged, setLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
+  const [asyncDataID, setAsyncDataID] = useState();
+  const [asyncDataActive, setAsyncDataActive] = useState();
+  // console.log("[asyncDataActive]: ", asyncDataActive);
+
   // const [asyncData, setAsyncData] = useState([]);
 
   // Firestore API get collection
@@ -89,8 +93,9 @@ function App() {
 
             {/* Public routes */}
             <Route path="/" exact render={(props) => <Mainpage recipes={recipes} recipe={recipe} setRecipe={setRecipe} mainImgs={mainImgs} mainImg={mainImg} setMainImg={setMainImg} />} />
-            <Route path="/receptar" exact render={(props) => <Receptory recipes={recipes} setRecipe={setRecipe} />} />
-            <Route path="/receptar/:id" render={(props) => <ReceptoryFile recipe={recipe} logged={logged} />} />
+            <Route path="/receptar" exact render={(props) => <Receptory recipes={recipes} setRecipe={setRecipe} setAsyncDataActive={setAsyncDataActive} setAsyncDataID={setAsyncDataID} />} />
+            <Route path="/receptar/:id" render={(props) => <ReceptoryFile recipe={recipe} logged={logged} asyncDataActive={asyncDataActive} asyncDataID={asyncDataID} />} />
+            {/* <Route path="/receptar/:id" render={(props) => <ReceptoryFile id={recipe.id} />} /> */}
             <Route path="/edit/:id" render={(props) => <Edit recipe={recipe} />} />
             <Route path="/login" render={(props) => <LoginPage setLogged={setLogged} />} />
 

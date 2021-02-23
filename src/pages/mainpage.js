@@ -66,7 +66,7 @@ const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg })
 
     useEffect(() => {
         if (asyncData.length > 0) {
-            console.log("Undefined");
+            // console.log("Undefined");
             setFirestoreLoading(false);
         }
     })

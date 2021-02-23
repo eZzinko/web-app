@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 
-const BlogCard = ({ data }) => {
+const BlogCard = ({ data, setAsyncDataActive, setAsyncDataID }) => {
     const backgroundImage = {
         backgroundImage: `url(${data.cover})`
     }
@@ -13,8 +13,15 @@ const BlogCard = ({ data }) => {
     const timestamp = new Date(data.createdAt);
     const humanDate = new Date(timestamp).getDate() + '. ' + new Date(timestamp).getMonth() + '. ' + new Date(timestamp).getFullYear();
 
+    // useEffect(() => {
+    // setAsyncDataID(data.id);
+    console.log("[]")
+
+    const history = useHistory();
+
+    // })
     return (
-        <Link to={`/receptar/${data.id}`} className="blogcard">
+        <Link to={`/receptar/${data.id}`} className="blogcard" onClick={() => setAsyncDataActive(data.id)}>
             {/* <div className="blogcard" onClick={linkHandler}> */}
             <div className="blogcard">
                 <div className="img-place" style={backgroundImage}>

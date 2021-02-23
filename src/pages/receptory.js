@@ -10,7 +10,7 @@ import PlaceholderCard from "../components/placeholderCard";
 //Firebase
 import firebase from '../firebase';
 
-const Receptory = () => {
+const Receptory = ({ setAsyncDataActive, setAsyncDataID }) => {
     const ref = firebase.firestore().collection("recipe");
     //Set document title
     useEffect(() => {
@@ -27,7 +27,7 @@ const Receptory = () => {
 
     const [asyncData, setAsyncData] = useState([]);
     const [data, setData] = useState([]);
-    console.log("[Data]: ", data);
+    // console.log("[Data]: ", data);
 
     //Fuse module SEARCH
     //User input
@@ -92,7 +92,7 @@ const Receptory = () => {
         // setAsyncCategory(categoryArr);
     }
 
-    console.log("[asyncData]: ", asyncData);
+    // console.log("[asyncData]: ", asyncData);
 
     //Execute API get request
     useEffect(() => {
@@ -102,7 +102,6 @@ const Receptory = () => {
 
     useEffect(() => {
         if (asyncData.length > 0) {
-            console.log("Undefined");
             setFirestoreLoading(false);
         }
     })
@@ -111,6 +110,11 @@ const Receptory = () => {
     const placeholderArr = [];
     for (let i = 0; i < 6; i++) {
         placeholderArr.push(<PlaceholderCard />);
+    }
+
+
+    const ChangeActiveHandler = () => {
+        console.log("Clicked");
     }
 
 
@@ -193,11 +197,11 @@ const Receptory = () => {
                                     filterValue
                                         ?
                                         asyncData.filter(data => data.subCategory === filterValue).map((recipe) => {
-                                            return (<BlogCard data={recipe} key={recipe.id} />)
+                                            return (<BlogCard data={recipe} key={recipe.id} setAsyncDataActive={setAsyncDataActive} />)
                                         })
                                         :
                                         asyncData.map((data) => {
-                                            return (<BlogCard data={data} key={data.id} />)
+                                            return (<BlogCard data={data} key={data.id} setAsyncDataActive={setAsyncDataActive} />)
                                         })
                                 )
                         }
