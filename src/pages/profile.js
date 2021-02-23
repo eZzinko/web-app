@@ -6,7 +6,7 @@ import { AuthContext } from '../auth/Auth';
 import firebase from '../firebase';
 
 
-const Profile = ({ recipes }) => {
+const Profile = () => {
 
     const { currentUser } = useContext(AuthContext);
     const [userName, setUserName] = useState("");

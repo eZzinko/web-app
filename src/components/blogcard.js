@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 
 const BlogCard = ({ data, setAsyncDataActive, setAsyncDataID }) => {
@@ -15,9 +15,6 @@ const BlogCard = ({ data, setAsyncDataActive, setAsyncDataID }) => {
 
     // useEffect(() => {
     // setAsyncDataID(data.id);
-    console.log("[]")
-
-    const history = useHistory();
 
     // })
     return (

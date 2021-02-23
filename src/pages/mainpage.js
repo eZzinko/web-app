@@ -9,7 +9,7 @@ import InfoLargeCard from "../components/infolargecard";
 import CategoryCard from '../components/categoryCard';
 import PlaceholderCard from '../components/placeholderCard';
 
-const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
+const Mainpage = ({ recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
 
     //Set document title
     useEffect(() => {
@@ -64,6 +64,7 @@ const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg })
         // eslint-disable-next-line
     }, []);
 
+    // eslint-disable-next-line 
     useEffect(() => {
         if (asyncData.length > 0) {
             // console.log("Undefined");
@@ -74,7 +75,7 @@ const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg })
     const placeholderArr = []
 
     for (let i = 0; i < 6; i++) {
-        placeholderArr.push(<PlaceholderCard />);
+        placeholderArr.push(<PlaceholderCard key={i} />);
     }
     return (
         <>
@@ -98,7 +99,7 @@ const Mainpage = ({ recipes, recipe, setRecipe, mainImg, mainImgs, setMainImg })
                     <h2>Kategorie</h2>
                     <div className="row">
                         {firestoreLoading ? placeholderArr : uniqeCat.map((data) => {
-                            return (<CategoryCard item={data} />)
+                            return (<CategoryCard item={data} key={uuid4} />)
                         })}
                     </div>
                 </div>

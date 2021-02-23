@@ -5,7 +5,6 @@ const LoginPage = ({ setLogged }) => {
 
     return (
         <>
-            {/* <h1>Login Page</h1> */}
             <Login setLogged={setLogged} />
         </>
     );

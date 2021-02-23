@@ -4,29 +4,29 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.bubble.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
-import Cookies from 'universal-cookie';
 
 import firebase from '../firebase';
 
-const ReceptoryFile = ({ recipe, logged, setAsyncDataActive, asyncDataID }) => {
+const ReceptoryFile = ({ logged }) => {
     useEffect(() => {
-        document.title = `${recipe.name} | Moje kuchařka`;
+        document.title = `${currentDoc.name} | Moje kuchařka`;
     });
     // console.log(asyncDataID);
 
+    const [currentDoc, setCurrentDoc] = useState([]);
     const backgroundImage = {
-        backgroundImage: `url(${recipe.cover})`
+        backgroundImage: `url(${currentDoc.cover})`
     };
-    const timestamp = new Date(recipe.createdAt);
+    const timestamp = new Date(currentDoc.createdAt);
     const humanDate = new Date(timestamp).getDate() + '. ' + new Date(timestamp).getMonth() + '. ' + new Date(timestamp).getFullYear();
 
-    const [currentDoc, setCurrentDoc] = useState([]);
+
 
     const history = useHistory();
     const ref = firebase.firestore().collection("recipe");
     const removeDocs = () => {
         ref
-            .doc(recipe.id)
+            .doc(currentDoc.id)
             .delete()
             .then(() => {
                 console.log("Document successfully deleted!");
@@ -39,10 +39,10 @@ const ReceptoryFile = ({ recipe, logged, setAsyncDataActive, asyncDataID }) => {
     }
 
 
-    const [firestoreLoading, setFirestoreLoading] = useState(true);
+    // const [firestoreLoading, setFirestoreLoading] = useState(true);
 
-    const [asyncData, setAsyncData] = useState([]);
-    const [data, setData] = useState([]);
+    // const [asyncData, setAsyncData] = useState([]);
+    // const [data, setData] = useState([]);
 
 
     // console.log("[useHistory]: ", history.location.pathname);
@@ -75,13 +75,13 @@ const ReceptoryFile = ({ recipe, logged, setAsyncDataActive, asyncDataID }) => {
         // eslint-disable-next-line
     }, []);
 
-    useEffect(() => {
-        if (currentDoc.length > 0) {
-            setFirestoreLoading(false);
-            console.log("[Document not ready]");
+    // useEffect(() => {
+    //     if (currentDoc.length > 0) {
+    //         setFirestoreLoading(false);
+    //         console.log("[Document not ready]");
 
-        }
-    })
+    //     }
+    // })
 
 
     // const cookies = new Cookies();
@@ -125,7 +125,7 @@ const ReceptoryFile = ({ recipe, logged, setAsyncDataActive, asyncDataID }) => {
                     </div>
                     <div className="side-bar">
                         {logged ? <FontAwesomeIcon icon={faTrash} onClick={removeDocs} /> : ""}
-                        {logged ? <Link to={`/edit/${recipe.id}`}><FontAwesomeIcon icon={faEdit} /></Link> : ""}
+                        {logged ? <Link to={`/edit/${currentDoc.id}`}><FontAwesomeIcon icon={faEdit} /></Link> : ""}
                         <h6>{humanDate}</h6>
                         <h5>{currentDoc.artist}</h5>
                         <h4>{currentDoc.category} <span>{currentDoc.subCategory}</span></h4>

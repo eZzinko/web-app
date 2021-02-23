@@ -10,7 +10,7 @@ import PlaceholderCard from "../components/placeholderCard";
 //Firebase
 import firebase from '../firebase';
 
-const Receptory = ({ setAsyncDataActive, setAsyncDataID }) => {
+const Receptory = ({ setAsyncDataActive }) => {
     const ref = firebase.firestore().collection("recipe");
     //Set document title
     useEffect(() => {
@@ -76,7 +76,6 @@ const Receptory = ({ setAsyncDataActive, setAsyncDataID }) => {
 
     const getRecipes = async () => {
         const allArr = [];
-        const categoryArr = [];
         const allReciper = await ref.get();
         for (const doc of allReciper.docs) {
             allArr.push({
@@ -100,6 +99,7 @@ const Receptory = ({ setAsyncDataActive, setAsyncDataID }) => {
         // eslint-disable-next-line
     }, []);
 
+    // eslint-disable-next-line 
     useEffect(() => {
         if (asyncData.length > 0) {
             setFirestoreLoading(false);
@@ -109,13 +109,10 @@ const Receptory = ({ setAsyncDataActive, setAsyncDataID }) => {
 
     const placeholderArr = [];
     for (let i = 0; i < 6; i++) {
-        placeholderArr.push(<PlaceholderCard />);
+        placeholderArr.push(<PlaceholderCard key={i} />);
     }
 
 
-    const ChangeActiveHandler = () => {
-        console.log("Clicked");
-    }
 
 
     return (
