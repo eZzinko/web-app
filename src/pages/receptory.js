@@ -5,31 +5,42 @@ import Fuse from 'fuse.js';
 //Components
 import BlogCard from '../components/blogcard';
 import SearchBar from "../components/searchBar";
+import PlaceholderCard from "../components/placeholderCard";
 
-const Receptory = ({ recipes, setRecipe }) => {
+//Firebase
+import firebase from '../firebase';
 
+const Receptory = () => {
+    const ref = firebase.firestore().collection("recipe");
     //Set document title
     useEffect(() => {
         document.title = `Receptář | Moje kuchařka`;
     })
 
     //Internal STATE configuration
-    const [data, setData] = useState(recipes);
+
     const [filterValue, setFilterValue] = useState(false);
     const [activeFilter, setActiveFilter] = useState(false);
+
+
+    const [firestoreLoading, setFirestoreLoading] = useState(true);
+
+    const [asyncData, setAsyncData] = useState([]);
+    const [data, setData] = useState([]);
+    console.log("[Data]: ", data);
 
     //Fuse module SEARCH
     //User input
     const searchHandler = (pattern) => {
 
-        //Clear filter if no data to search
+        // Clear filter if no data to search
         if (!pattern) {
-            setData(recipes);
+            setAsyncData(data);
             return;
         }
 
         //Select fields to search from
-        const fuse = new Fuse(data, {
+        const fuse = new Fuse(asyncData, {
             keys: ["artist", "category", "name", "subCategory"],
         });
 
@@ -38,12 +49,12 @@ const Receptory = ({ recipes, setRecipe }) => {
 
         //Filter data compared to result
         if (!result.length) {
-            setData([]);
+            setAsyncData(data);
         } else {
             result.forEach(({ item }) => {
                 matches.push(item);
             });
-            setData(matches);
+            setAsyncData(matches);
         }
     }
 
@@ -59,6 +70,49 @@ const Receptory = ({ recipes, setRecipe }) => {
             setActiveFilter(true);
         }
     }
+
+
+
+
+    const getRecipes = async () => {
+        const allArr = [];
+        const categoryArr = [];
+        const allReciper = await ref.get();
+        for (const doc of allReciper.docs) {
+            allArr.push({
+                id: doc.data().id,
+                name: doc.data().name,
+                artist: doc.data().artist,
+                createdAt: doc.data().createdAt,
+                cover: doc.data().cover
+            });
+        }
+        setAsyncData(allArr);
+        setData(allArr);
+        // setAsyncCategory(categoryArr);
+    }
+
+    console.log("[asyncData]: ", asyncData);
+
+    //Execute API get request
+    useEffect(() => {
+        getRecipes();
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        if (asyncData.length > 0) {
+            console.log("Undefined");
+            setFirestoreLoading(false);
+        }
+    })
+
+
+    const placeholderArr = [];
+    for (let i = 0; i < 6; i++) {
+        placeholderArr.push(<PlaceholderCard />);
+    }
+
 
     return (
         <>
@@ -130,11 +184,23 @@ const Receptory = ({ recipes, setRecipe }) => {
                         </div> */}
                     </div>
                     <div className="row">
-                        {filterValue ? data.filter(person => person.subCategory === filterValue).map((recipe) => (
-                            <BlogCard recipe={recipe} setRecipe={setRecipe} recipes={recipes} id={recipe.id} key={recipe.id} />
-                        )) : data.map((recipe) => (
-                            <BlogCard recipe={recipe} setRecipe={setRecipe} recipes={recipes} id={recipe.id} key={recipe.id} />
-                        ))}
+                        {
+                            firestoreLoading
+                                ?
+                                placeholderArr
+                                :
+                                (
+                                    filterValue
+                                        ?
+                                        asyncData.filter(data => data.subCategory === filterValue).map((recipe) => {
+                                            return (<BlogCard data={recipe} key={recipe.id} />)
+                                        })
+                                        :
+                                        asyncData.map((data) => {
+                                            return (<BlogCard data={data} key={data.id} />)
+                                        })
+                                )
+                        }
                     </div>
                 </div>
             </div>
