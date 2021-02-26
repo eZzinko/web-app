@@ -9,34 +9,12 @@ import InfoLargeCard from "../components/infolargecard";
 import CategoryCard from '../components/categoryCard';
 import PlaceholderCard from '../components/placeholderCard';
 
-const Mainpage = ({ recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
+const Mainpage = () => {
 
     //Set document title
     useEffect(() => {
         document.title = `Moje kuchařka`;
     })
-
-    //Filter categories
-    // const categoryArr = [];
-    // const cardArr = [];
-
-    // eslint-disable-next-line
-    // recipes.map(tag => {
-    //     if (categoryArr.indexOf(tag.category) === -1) {
-    //         categoryArr.push(tag.category);
-    //     }
-    // })
-
-    // categoryArr.forEach((item) => {
-    //     cardArr.push(<CategoryCard item={item} key={uuid4()} />);
-    // });
-
-    // console.log("[Categories]: ", categoryArr);
-
-
-
-
-
 
     const ref = firebase.firestore().collection("recipe");
 
@@ -44,9 +22,13 @@ const Mainpage = ({ recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
 
     const [asyncData, setAsyncData] = useState([]);
     const [asyncCategory, setAsyncCategory] = useState([]);
+    const [asyncDataMain, setAsyncDataMain] = useState([{
+        name: ""
+    }]);
 
     const getRecipes = async () => {
         const allArr = [];
+        const getMain = [];
         const categoryArr = [];
         const allReciper = await ref.get();
         for (const doc of allReciper.docs) {
@@ -55,8 +37,16 @@ const Mainpage = ({ recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
         }
         setAsyncData(allArr);
         setAsyncCategory(categoryArr);
+
+        allArr.filter((data) => {
+            if (data.main === true) {
+                getMain.push(data);
+            }
+        });
+        setAsyncDataMain(getMain);
     }
     const uniqeCat = [...new Set(asyncCategory)];
+
 
     //Execute API get request
     useEffect(() => {
@@ -80,7 +70,23 @@ const Mainpage = ({ recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
     return (
         <>
             <div className="header">
-                <Infocard mainImg={mainImg} setMainImg={setMainImg} mainImgs={mainImgs} setRecipe={setRecipe} key={mainImg.id} />
+                {
+                    firestoreLoading
+                        ?
+                        <PlaceholderCard />
+                        :
+                        (asyncData.map((data) => {
+
+                            if (data.tipOfDay === true) {
+                                return (<Infocard asyncDataMain={asyncData} />)
+                            }
+                            else {
+                                return ("");
+                            }
+                        }))
+
+                }
+
             </div>
             <div className="body-align">
 
@@ -90,7 +96,22 @@ const Mainpage = ({ recipe, setRecipe, mainImg, mainImgs, setMainImg }) => {
                     </div>
                     <div className="mealofday">
                         <div className="card">
-                            <InfoLargeCard key={recipe.id} />
+                            {
+                                firestoreLoading
+                                    ?
+                                    <PlaceholderCard />
+                                    :
+                                    asyncData.map((data) => {
+
+                                        if (data.tipOfDay === true) {
+                                            return (<InfoLargeCard asyncData={data} key={uuid4} />)
+                                        }
+                                        else {
+                                            return ("");
+                                        }
+                                    })
+
+                            }
                         </div>
                         <div className="image-box"></div>
                     </div>

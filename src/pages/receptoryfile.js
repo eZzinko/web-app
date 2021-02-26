@@ -18,7 +18,7 @@ const ReceptoryFile = ({ logged }) => {
         backgroundImage: `url(${currentDoc.cover})`
     };
     const timestamp = new Date(currentDoc.createdAt);
-    const humanDate = new Date(timestamp).getDate() + '. ' + new Date(timestamp).getMonth() + '. ' + new Date(timestamp).getFullYear();
+    const humanDate = new Date(timestamp).getDate() + '. ' + (new Date(timestamp + 60).getMonth() + 1) + '. ' + new Date(timestamp).getFullYear();
 
 
 
@@ -48,24 +48,17 @@ const ReceptoryFile = ({ logged }) => {
     // console.log("[useHistory]: ", history.location.pathname);
     const historyLink = history.location.pathname;
     const historySubString = historyLink.substring(10)
-    console.log("[History subString]: ", historySubString);
+    // console.log("[History subString]: ", historySubString);
 
 
     const getRecipes = async () => {
         let activeData = [];
-        console.log("[activeData SET]:", activeData);
-        // if (asyncDataID === undefined) {
+        // console.log("[activeData SET]:", activeData);
         activeData = await firebase.firestore().collection('recipe').doc(historySubString).get();
-        //     console.log("[activeData IF]:", activeData);
-        // }
-        // else {
-        //     activeData = await firebase.firestore().collection('recipe').doc(asyncDataID).get();
-        //     console.log("[activeData ELSE]:", activeData);
-        // }
-        console.log("[activeData POS]:", activeData);
+        // console.log("[activeData POS]:", activeData);
         setCurrentDoc(activeData.data());
     }
-    console.log(currentDoc);
+    // console.log(currentDoc);
 
 
 

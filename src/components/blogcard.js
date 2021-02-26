@@ -11,7 +11,7 @@ const BlogCard = ({ data, setAsyncDataActive, setAsyncDataID }) => {
     //     setRecipe(selectedRecipe[0]);
     // }
     const timestamp = new Date(data.createdAt);
-    const humanDate = new Date(timestamp).getDate() + '. ' + new Date(timestamp).getMonth() + '. ' + new Date(timestamp).getFullYear();
+    const humanDate = new Date(timestamp).getDate() + '. ' + (new Date(timestamp).getMonth() + 1) + '. ' + new Date(timestamp).getFullYear();
 
     // useEffect(() => {
     // setAsyncDataID(data.id);

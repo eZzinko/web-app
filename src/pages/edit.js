@@ -9,12 +9,13 @@ import 'react-quill/dist/quill.snow.css';
 
 
 const Edit = ({ recipe, recipeLink }) => {
+    const [currentDoc, setCurrentDoc] = useState([]);
     const history = useHistory();
-    console.log("[recipe]: ", recipe);
-    const ref = firebase.firestore().collection("recipe");
+    const ref = firebase.firestore().collection('recipe');
+
     const { currentUser } = useContext(AuthContext);
 
-    const [artist, setArtist] = useState(currentUser.displayName);
+    const [artist, setArtist] = useState("");
     const [cover, setCover] = useState("");
     const [createdAt, setCreatedAt] = useState(Date.now());
     const [description, setDescription] = useState("some text testin");
@@ -26,6 +27,9 @@ const Edit = ({ recipe, recipeLink }) => {
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
     const [content, setContent] = useState();
+
+    const timestamp = new Date(currentDoc.createdAt);
+    const humanDate = new Date(timestamp).getDate() + '. ' + (new Date(timestamp + 60).getMonth() + 1) + '. ' + new Date(timestamp).getFullYear();
 
     console.log("[ID]: ", recipe.id);
 
@@ -84,35 +88,55 @@ const Edit = ({ recipe, recipeLink }) => {
         document.title = `Nový recept | Moje kuchařka`;
     })
 
+    const historyLink = history.location.pathname;
+    const historySubString = historyLink.substring(6)
+    console.log("[History subString]: ", historySubString);
+
+
+    const getRecipes = async () => {
+        let activeData = [];
+        console.log("[activeData SET]:", activeData);
+        activeData = await firebase.firestore().collection('recipe').doc(historySubString).get();
+        console.log("[activeData POS]:", activeData);
+        setCurrentDoc(activeData.data());
+    }
+    console.log(currentDoc);
+
+    //Execute API get request
+    useEffect(() => {
+        getRecipes();
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <>
             <div className="cover">
                 <div className="overlay"></div>
-                <h2><input type="text" onChange={(e) => setCover(e.target.value)} value={recipe.cover} /></h2>
+                <h2><input type="text" onChange={(e) => setCover(e.target.value)} value={currentDoc.cover} defaultValue={currentDoc.cover} /></h2>
                 <div className="cover-panel-full">
                     <div className="cover-panel">
                         <div className="item">
-                            <input type="text" onChange={(e) => setMadeTime(e.target.value)} placeholder="MadeTime" value={recipe.madeTime} /> min
+                            <input type="text" onChange={(e) => setMadeTime(e.target.value)} placeholder="MadeTime" defaultValue={currentDoc.madeTime} de /> min
                         </div>
                         <div className="item">
-                            <h3><input type="text" onChange={(e) => setName(e.target.value)} placeholder="Name" defaultValue={recipe.name} /></h3>
+                            <h3><input type="text" onChange={(e) => setName(e.target.value)} placeholder="Name" defaultValue={currentDoc.name} /></h3>
                         </div>
                         <div className="item">
-                            <input type="text" onChange={(e) => setMadePrice(e.target.value)} placeholder="MadePrice" value={recipe.madePrice} />  Kč
+                            <input type="text" onChange={(e) => setMadePrice(e.target.value)} placeholder="MadePrice" defaultValue={currentDoc.madePrice} />  Kč
                         </div>
                     </div>
                 </div>
             </div>
             <div className="body-align">
                 <div className="short-info">
-                    <span><input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Description" value={recipe.description} /></span>
+                    <span><input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Description" defaultValue={currentDoc.description} /></span>
                 </div>
                 <div className="content-box">
                     <div className="content">
                         <ReactQuill
                             onChange={quillHandleChange}
-                            value={content}
-                            // defaultValue={recipe.content}
+                            // value={currentDoc.content || ''}
+                            defaultValue={recipe.content || ''}
                             theme="snow"
                             modules={modules}
                             formats={formats}
@@ -120,10 +144,10 @@ const Edit = ({ recipe, recipeLink }) => {
                         />
                     </div>
                     <div className="side-bar">
-                        <input type="text" onChange={(e) => setCreatedAt(e.target.value)} placeholder="CreatedAt" disabled />
-                        <input type="text" onChange={(e) => setArtist(e.target.value)} placeholder="Artist" disabled />
-                        <span><input type="text" onChange={(e) => setCategory(e.target.value)} placeholder="Category" /></span>
-                        <span><input type="text" onChange={(e) => setSubCategory(e.target.value)} placeholder="SubCategory" /></span>
+                        <input type="text" onChange={(e) => setCreatedAt(e.target.value)} placeholder="CreatedAt" disabled defaultValue={humanDate} />
+                        <input type="text" onChange={(e) => setArtist(e.target.value)} placeholder="Artist" disabled defaultValue={currentDoc.artist} />
+                        <span><input type="text" onChange={(e) => setCategory(e.target.value)} placeholder="Category" defaultValue={currentDoc.category} /></span>
+                        <span><input type="text" onChange={(e) => setSubCategory(e.target.value)} placeholder="SubCategory" defaultValue={currentDoc.subCategory} /></span>
 
                     </div>
                 </div>

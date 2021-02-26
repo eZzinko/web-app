@@ -1,6 +1,7 @@
 //Modules
 import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
+import { v4 as uuid4 } from "uuid";
 
 //Components
 import BlogCard from '../components/blogcard';
@@ -9,25 +10,26 @@ import PlaceholderCard from "../components/placeholderCard";
 
 //Firebase
 import firebase from '../firebase';
+import { uuid } from 'uuidv4';
 
 const Receptory = ({ setAsyncDataActive }) => {
-    const ref = firebase.firestore().collection("recipe");
+
     //Set document title
     useEffect(() => {
         document.title = `Receptář | Moje kuchařka`;
     })
 
     //Internal STATE configuration
+    const ref = firebase.firestore().collection("recipe");
 
     const [filterValue, setFilterValue] = useState(false);
-    const [activeFilter, setActiveFilter] = useState(false);
-
+    const [activeFilter, setActiveFilter] = useState();
 
     const [firestoreLoading, setFirestoreLoading] = useState(true);
 
     const [asyncData, setAsyncData] = useState([]);
     const [data, setData] = useState([]);
-    // console.log("[Data]: ", data);
+    const [asyncCategory, setAsyncCategory] = useState([]);
 
     //Fuse module SEARCH
     //User input
@@ -60,14 +62,12 @@ const Receptory = ({ setAsyncDataActive }) => {
 
     //Filter data from DropDown select
     const filterHandler = (filter) => {
-        console.log(filter);
-        if (activeFilter) {
-            setFilterValue(filter);
-            setActiveFilter(false);
+        if (filter == activeFilter) {
+            setFilterValue("");
         }
         else {
             setFilterValue(filter);
-            setActiveFilter(true);
+            setActiveFilter(filter);
         }
     }
 
@@ -76,6 +76,7 @@ const Receptory = ({ setAsyncDataActive }) => {
 
     const getRecipes = async () => {
         const allArr = [];
+        const categoryData = [];
         const allReciper = await ref.get();
         for (const doc of allReciper.docs) {
             allArr.push({
@@ -83,13 +84,18 @@ const Receptory = ({ setAsyncDataActive }) => {
                 name: doc.data().name,
                 artist: doc.data().artist,
                 createdAt: doc.data().createdAt,
-                cover: doc.data().cover
+                cover: doc.data().cover,
+                category: doc.data().category,
+                subCategory: doc.data().subCategory
             });
+            categoryData.push(doc.data().category);
         }
         setAsyncData(allArr);
         setData(allArr);
+        setAsyncCategory(categoryData);
         // setAsyncCategory(categoryArr);
     }
+    const uniqeCat = [...new Set(asyncCategory)];
 
     // console.log("[asyncData]: ", asyncData);
 
@@ -115,6 +121,7 @@ const Receptory = ({ setAsyncDataActive }) => {
 
 
 
+
     return (
         <>
             <div className="header">
@@ -132,57 +139,28 @@ const Receptory = ({ setAsyncDataActive }) => {
                     <h2>Najděte si, na co máte chuť</h2>
                     <SearchBar placeholder="Na co máte chuť" onChange={(e) => searchHandler(e.target.value)} />
                     <div className="filter-bar">
-                        <div className="dropdown">
-                            <button className="dropbtn">Snídaně</button>
-                            <div className="dropdown-content">
-                                <button value="Anglická snídaně" onClick={(e) => filterHandler(e.target.value)}>Anglická</button>
-                                <button value="Americká snídaně" onClick={(e) => filterHandler(e.target.value)}>Americká</button>
-                                <button value="Kontinentální snídaně" onClick={(e) => filterHandler(e.target.value)}>Kontinentální</button>
-                                <button value="Vídeňská snídaně" onClick={(e) => filterHandler(e.target.value)}>Vídeňská</button>
-                            </div>
-                        </div>
+                        {
+                            uniqeCat.map((data) => {
+                                return (
+                                    <div className="dropdown">
+                                        <button className="dropbtn">{data}</button>
+                                        <div className="dropdown-content">
+                                            {
+                                                asyncData.map((asyncDataFor) => {
+                                                    if (asyncDataFor.category == data) {
+                                                        return (
+                                                            <button value={asyncDataFor.subCategory} key={asyncDataFor.id} onClick={(e) => filterHandler(e.target.value)}>{asyncDataFor.subCategory}</button>
+                                                        )
 
-                        <div className="dropdown">
-                            <button className="dropbtn" value="Svačina" onClick={(e) => filterHandler(e.target.value)}>Svačina</button>
-                        </div>
+                                                    }
 
-                        <div className="dropdown">
-                            <button className="dropbtn">Předkrm</button>
-                            <div className="dropdown-content">
-                                <button value="Studené předkrmy" onClick={(e) => filterHandler(e.target.value)}>Studené</button>
-                                <button value="Teplé předkrmy" onClick={(e) => filterHandler(e.target.value)}>Teplé</button>
-                            </div>
-                        </div>
-
-                        <div className="dropdown">
-                            <button className="dropbtn">Polévka</button>
-                            <div className="dropdown-content">
-                                <button value="Slaná polévka" onClick={(e) => filterHandler(e.target.value)}>Slaná</button>
-                                <button value="Sladká polévka" onClick={(e) => filterHandler(e.target.value)}>Sladká</button>
-                                <button value="Studená polévka" onClick={(e) => filterHandler(e.target.value)}>Studená</button>
-                                <button value="Teplá polévka" onClick={(e) => filterHandler(e.target.value)}>Teplá</button>
-                                <button value="Čirá polévka" onClick={(e) => filterHandler(e.target.value)}>Čiré</button>
-                                <button value="Zahuštěná polévka" onClick={(e) => filterHandler(e.target.value)}>Zahuštěné</button>
-                            </div>
-                        </div>
-
-                        <div className="dropdown">
-                            <button className="dropbtn">Hlavní chod</button>
-                            <div className="dropdown-content">
-                                <button value="Maso" onClick={(e) => filterHandler(e.target.value)}>Masitá</button>
-                                <button value="Ryba" onClick={(e) => filterHandler(e.target.value)}>Rybí</button>
-                                <button value="Vegetarián" onClick={(e) => filterHandler(e.target.value)}>Vegetariánské</button>
-                            </div>
-                        </div>
-
-                        {/* <div class="dropdown">
-                            <button class="dropbtn">Večeře</button>
-                            <div class="dropdown-content">
-                                <button value="David" onClick={(e) => filterHandler(e.target.value)}>Link 1</button>
-                                <button value="David" onClick={(e) => filterHandler(e.target.value)}>Link 1</button>
-                                <button value="David" onClick={(e) => filterHandler(e.target.value)}>Link 1</button>
-                            </div>
-                        </div> */}
+                                                })
+                                            }
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
                     </div>
                     <div className="row">
                         {

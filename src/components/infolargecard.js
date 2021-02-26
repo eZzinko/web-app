@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-const InfoLargeCard = (props) => {
+const InfoLargeCard = ({ asyncData }) => {
     return (
         <div className="info-card large">
             <div className="info-card-heading">
-                <h2>{props.name}</h2>
+                <h2>{asyncData.name}</h2>
             </div>
             <div className="info-card-content">
                 <div className="link">
@@ -13,7 +14,7 @@ const InfoLargeCard = (props) => {
                     </div>
                     <div className="content">
                         <h4>Doba přípravy</h4>
-                        <h5>10 - 15 minut</h5>
+                        <h5>{asyncData.madeTime} minut</h5>
                     </div>
                 </div>
                 <div className="link">
@@ -22,19 +23,14 @@ const InfoLargeCard = (props) => {
                     </div>
                     <div className="content">
                         <h4>Cena přípravy</h4>
-                        <h5>60 - 90 Kč</h5>
+                        <h5>{asyncData.madePrice} Kč</h5>
                     </div>
                 </div>
             </div>
             <div className="info-card-footer">
                 <span>
-                    Přečíst více
+                    <Link to={`/receptar/${asyncData.id}`}> Přečíst více</Link>
                 </span>
-                <div className="buttons">
-                    <button className="nextImg active"></button>
-                    <button className="nextImg"></button>
-                    <button className="nextImg"></button>
-                </div>
             </div>
         </div>
     )

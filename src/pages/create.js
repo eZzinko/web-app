@@ -38,6 +38,8 @@ const Create = () => {
     const [madeTime, setMadeTime] = useState("");
     // eslint-disable-next-line
     const [main, setMain] = useState(false);                        //Default main is disable - must be done manualy
+    // eslint-disable-next-line
+    const [tipOfDay, setTipOfDay] = useState(false);
     const [name, setName] = useState("");
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
@@ -140,7 +142,7 @@ const Create = () => {
                     </div>
                 </div>
             </div>
-            <button onClick={() => addRecipe({ artist, cover, createdAt, description, id: uuid4(), madePrice, madeTime, main, name, category, subCategory, content })} className="button-save">Uložit</button>
+            <button onClick={() => addRecipe({ artist, cover, createdAt, description, id: uuid4(), madePrice, madeTime, main, name, category, subCategory, content, tipOfDay })} className="button-save">Uložit</button>
         </>
     );
 }

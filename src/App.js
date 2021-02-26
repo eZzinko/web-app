@@ -31,11 +31,7 @@ function App() {
 
   //Global STATE configuration
   // eslint-disable-next-line 
-  const [recipes, setRecipes] = useState(data());         //All recipes - default data from mocup
-  const [recipe, setRecipe] = useState(recipes[0]);      //Selected first from mocup
-  //
-  const [mainImgs] = useState(recipes.filter(button => button.main === true));          //Filter for heading slideshow
-  const [mainImg, setMainImg] = useState(mainImgs[0]);          //First displayed heading from slideshow
+
   //
   const [logged, setLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
@@ -57,11 +53,10 @@ function App() {
           <Switch>
 
             {/* Public routes */}
-            <Route path="/" exact render={(props) => <Mainpage recipes={recipes} recipe={recipe} setRecipe={setRecipe} mainImgs={mainImgs} mainImg={mainImg} setMainImg={setMainImg} />} />
+            <Route path="/" exact render={(props) => <Mainpage />} />
             <Route path="/receptar" exact render={(props) => <Receptory setAsyncDataActive={setAsyncDataActive} />} />
             <Route path="/receptar/:id" render={(props) => <ReceptoryFile logged={logged} />} />
-            {/* <Route path="/receptar/:id" render={(props) => <ReceptoryFile id={recipe.id} />} /> */}
-            <Route path="/edit/:id" render={(props) => <Edit recipe={recipe} />} />
+            <Route path="/edit/:id" render={(props) => <Edit />} />
             <Route path="/login" render={(props) => <LoginPage setLogged={setLogged} />} />
 
             {/* Private routers */}
