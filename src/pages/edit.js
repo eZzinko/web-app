@@ -8,12 +8,13 @@ import quillEmoji from 'quill-emoji';
 import 'react-quill/dist/quill.snow.css';
 
 
-const Edit = ({ recipe, recipeLink }) => {
+const Edit = () => {
     const [currentDoc, setCurrentDoc] = useState([]);
     const history = useHistory();
     const ref = firebase.firestore().collection('recipe');
 
     const { currentUser } = useContext(AuthContext);
+    console.log(currentUser);
 
     const [artist, setArtist] = useState("");
     const [cover, setCover] = useState("");
@@ -31,7 +32,6 @@ const Edit = ({ recipe, recipeLink }) => {
     const timestamp = new Date(currentDoc.createdAt);
     const humanDate = new Date(timestamp).getDate() + '. ' + (new Date(timestamp + 60).getMonth() + 1) + '. ' + new Date(timestamp).getFullYear();
 
-    console.log("[ID]: ", recipe.id);
 
     function addRecipe(editRecipe) {
         ref
@@ -135,8 +135,7 @@ const Edit = ({ recipe, recipeLink }) => {
                     <div className="content">
                         <ReactQuill
                             onChange={quillHandleChange}
-                            // value={currentDoc.content || ''}
-                            defaultValue={recipe.content || ''}
+                            defaultValue={currentDoc.content || ''}
                             theme="snow"
                             modules={modules}
                             formats={formats}

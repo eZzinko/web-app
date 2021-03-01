@@ -22,22 +22,15 @@ import LoginPage from "./pages/loginPage";
 //Firebase
 import PrivateRoute from "./components/privateRoute";
 
-//Mocup data
-import data from './utils/util';
-
 function App() {
 
   //Firebase initialization for Firestore collection
 
   //Global STATE configuration
-  // eslint-disable-next-line 
 
-  //
   const [logged, setLogged] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
 
-  const [asyncDataID, setAsyncDataID] = useState();
-  const [asyncDataActive, setAsyncDataActive] = useState();
 
   return (
 
@@ -54,7 +47,7 @@ function App() {
 
             {/* Public routes */}
             <Route path="/" exact render={(props) => <Mainpage />} />
-            <Route path="/receptar" exact render={(props) => <Receptory setAsyncDataActive={setAsyncDataActive} />} />
+            <Route path="/receptar" exact render={(props) => <Receptory />} />
             <Route path="/receptar/:id" render={(props) => <ReceptoryFile logged={logged} />} />
             <Route path="/edit/:id" render={(props) => <Edit />} />
             <Route path="/login" render={(props) => <LoginPage setLogged={setLogged} />} />

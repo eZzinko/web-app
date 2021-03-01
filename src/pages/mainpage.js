@@ -22,6 +22,7 @@ const Mainpage = () => {
 
     const [asyncData, setAsyncData] = useState([]);
     const [asyncCategory, setAsyncCategory] = useState([]);
+    // eslint-disable-next-line
     const [asyncDataMain, setAsyncDataMain] = useState([{
         name: ""
     }]);
@@ -42,6 +43,7 @@ const Mainpage = () => {
             if (data.main === true) {
                 getMain.push(data);
             }
+            return ("");
         });
         setAsyncDataMain(getMain);
     }
@@ -70,23 +72,7 @@ const Mainpage = () => {
     return (
         <>
             <div className="header">
-                {
-                    firestoreLoading
-                        ?
-                        <PlaceholderCard />
-                        :
-                        (asyncData.map((data) => {
-
-                            if (data.tipOfDay === true) {
-                                return (<Infocard asyncDataMain={asyncData} />)
-                            }
-                            else {
-                                return ("");
-                            }
-                        }))
-
-                }
-
+                <Infocard />
             </div>
             <div className="body-align">
 
@@ -120,7 +106,7 @@ const Mainpage = () => {
                     <h2>Kategorie</h2>
                     <div className="row">
                         {firestoreLoading ? placeholderArr : uniqeCat.map((data) => {
-                            return (<CategoryCard item={data} key={uuid4} />)
+                            return (<CategoryCard item={data} key={data} />)
                         })}
                     </div>
                 </div>

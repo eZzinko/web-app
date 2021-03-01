@@ -1,7 +1,7 @@
 //Modules
 import React, { useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
-import { v4 as uuid4 } from "uuid";
+// import { v4 as uuid4 } from "uuid";
 
 //Components
 import BlogCard from '../components/blogcard';
@@ -10,7 +10,6 @@ import PlaceholderCard from "../components/placeholderCard";
 
 //Firebase
 import firebase from '../firebase';
-import { uuid } from 'uuidv4';
 
 const Receptory = ({ setAsyncDataActive }) => {
 
@@ -62,7 +61,7 @@ const Receptory = ({ setAsyncDataActive }) => {
 
     //Filter data from DropDown select
     const filterHandler = (filter) => {
-        if (filter == activeFilter) {
+        if (filter === activeFilter) {
             setFilterValue("");
         }
         else {
@@ -147,11 +146,13 @@ const Receptory = ({ setAsyncDataActive }) => {
                                         <div className="dropdown-content">
                                             {
                                                 asyncData.map((asyncDataFor) => {
-                                                    if (asyncDataFor.category == data) {
+                                                    if (asyncDataFor.category === data) {
                                                         return (
                                                             <button value={asyncDataFor.subCategory} key={asyncDataFor.id} onClick={(e) => filterHandler(e.target.value)}>{asyncDataFor.subCategory}</button>
-                                                        )
-
+                                                        );
+                                                    }
+                                                    else {
+                                                        return ("");
                                                     }
 
                                                 })

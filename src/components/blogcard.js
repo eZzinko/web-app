@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const BlogCard = ({ data, setAsyncDataActive, setAsyncDataID }) => {
     const backgroundImage = {
         backgroundImage: `url(${data.cover})`
+        // backgroundImage: "url(https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=3&amp;h=750&amp;w=1260)"
     }
     // const linkHandler = () => {
     //     const selectedRecipe = recipes.filter((state) => state.id === id);
@@ -18,7 +19,7 @@ const BlogCard = ({ data, setAsyncDataActive, setAsyncDataID }) => {
 
     // })
     return (
-        <Link to={`/receptar/${data.id}`} className="blogcard" onClick={() => setAsyncDataActive(data.id)}>
+        <Link to={`/receptar/${data.id}`} className="blogcard">
             {/* <div className="blogcard" onClick={linkHandler}> */}
             <div className="blogcard">
                 <div className="img-place" style={backgroundImage}>
