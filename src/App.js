@@ -50,10 +50,10 @@ function App() {
 						<PrivateRoute path="/edit/:id" component={Edit} />
 					</Switch>
 				</AuthProvider>
+
+				{/* Footer component */}
 				<Footer logged={logged} setLogged={setLogged} />
 			</div>
-
-			{/* Footer component */}
 		</Router>
 	);
 }
