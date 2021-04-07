@@ -13,7 +13,7 @@ const GroupCard = ({ text, recipe, setRecipe, recipes, id }) => {
     return (
         <Link to={`/receptar/${text.id}`} className="blogcard">
             <div className="groupcard" style={backgroundImage} onClick={linkHandler}>
-                {text.name}
+                <h2>{text.name}</h2>
                 <div className="shadow-burn"></div>
             </div>
         </Link>

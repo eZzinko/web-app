@@ -7,85 +7,94 @@
 @import './style/receptoryFile';
 @import './style/quill';
 @import './style/database';
+@import './style/placeholderSet';
+@import './style/editpage';
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* + * {
+	margin-top: 1.25rem;
 }
 
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
 
 body {
-    width: 100%;
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
-    background-color: $LIGHT_GRAY;
-    overflow-x: hidden;
-    overflow-y: overlay;
+	width: 100%;
+	height: 100%;
+	font-family: 'Poppins', sans-serif;
+	background-color: $LIGHT_GRAY;
+	overflow-x: hidden;
+	overflow-y: overlay;
 }
 
 .body-align {
-    max-width: 1330px;
-    margin: 0 auto;
-
+	max-width: 1330px;
+	margin: 0 auto;
 }
 
 p {
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: $REGULAR;
-    color: $BLACK;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: $REGULAR;
+	color: $BLACK;
 }
 
 a {
-    font-size: 16px;
-    font-weight: $REGULAR;
-    color: $LIGHT_BLACK;
-    cursor: pointer;
+	font-size: 16px;
+	font-weight: $REGULAR;
+	color: $LIGHT_BLACK;
+	cursor: pointer;
 }
 
 strong {
-    font-weight: $BOLD;
+	font-weight: $BOLD;
 }
 
 em {
-    font-weight: $LIGHT;
+	font-weight: $LIGHT;
 }
 
 h5 {
-    font-size: 12px;
-    font-weight: $BOLD;
+	font-size: 12px;
+	font-weight: $BOLD;
 }
 
 h4 {
-    font-size: 18px;
-    line-height: 32px;
-    font-weight: $BOLD;
+	font-size: 18px;
+	line-height: 32px;
+	font-weight: $BOLD;
 }
 
 h3 {
-    font-size: 32px;
-    // line-height: 48px;
-    color: $LIGHT_GRAY;
+	font-size: 32px;
+	color: $LIGHT_GRAY;
 }
 
 h2 {
-    font-size: 40px;
-    line-height: 60px;
-    text-align: center;
-    color: $LIGHT_BLACK;
+	font-size: 40px;
+	line-height: 60px;
+	text-align: center;
+	color: $LIGHT_BLACK;
 }
 
 h1 {
-    font-size: 48px;
-    line-height: 72px;
+	font-size: 48px;
+	line-height: 72px;
 }
 
 .row {
-    display: flex;
-    flex-wrap: wrap;
-    // justify-content: space-between;
-    align-items: center;
-    margin: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	// justify-content: space-between;
+	align-items: center;
+	margin: 20px;
+}
 
+.grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin: 15px;
 }

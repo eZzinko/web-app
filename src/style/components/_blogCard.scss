@@ -1,16 +1,17 @@
 a.blogcard {
-    max-width: 420px;
+    max-width: 410px;
     width: 100%;
+
     margin: 15px;
     margin-left: 0;
 
-    &:nth-child(3n+3) {
-        margin-right: 0;
-    }
+    // &:nth-child(3n+3) {
+    //     margin-right: 0;
+    // }
 
     .blogcard {
         .img-place {
-            background: url("../../img/mainpicture.jpg") brown;
+            background: url("../../img/mainpicture.jpg") $LIGHT_BLUE;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center center;
@@ -31,26 +32,10 @@ a.blogcard {
                 z-index: 1;
                 cursor: pointer;
                 transition: 0.15s;
-
-                &:hover+.shadow-burn {
-                    opacity: 0;
-                }
             }
 
-            .shadow-burn {
-                background-color: #000000;
-                width: 100%;
-                height: 100%;
-                opacity: 0.5;
-                position: absolute;
-                transition: 0.15s;
-                border-radius: 15px;
-                cursor: pointer;
+            @include shadow-burn();
 
-                &:hover {
-                    opacity: 0;
-                }
-            }
         }
 
         .text-area {

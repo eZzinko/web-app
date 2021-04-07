@@ -1,47 +1,85 @@
 .quill {
-    .ql-toolbar {
-        &.ql-snow {
-            border: 1px solid $GRAY;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-    }
+	.ql-toolbar {
+		&.ql-snow {
+			border: 1px solid $GRAY;
+			border-top-left-radius: 15px;
+			border-top-right-radius: 15px;
+		}
+	}
 
-    .ql-container {
-        &.ql-snow {
-            border: 1px solid $WHITE;
-            border-bottom-right-radius: 15px;
-            border-bottom-left-radius: 15px;
-        }
-    }
+	.ql-container {
+		&.ql-snow {
+			border: 1px solid $WHITE;
+			border-bottom-right-radius: 15px;
+			border-bottom-left-radius: 15px;
+		}
+	}
 
-    .ql-editor {
-        h1 {
-            color: $BLACK;
-            text-align: left;
-            font-size: 26px !important;
-            line-height: 34px;
-        }
+	.ql-editor {
+		h1 {
+			color: $BLACK;
+			text-align: left;
+			font-size: 26px !important;
+			line-height: 34px;
+		}
 
-        h2 {
-            color: $BLACK;
-            text-align: left;
-            font-size: 22px !important;
-            line-height: 30px;
-        }
+		h2 {
+			color: $BLACK;
+			text-align: left;
+			font-size: 22px !important;
+			line-height: 30px;
+		}
 
-        h3 {
-            color: $BLACK;
-            font-size: 18px !important;
-            line-height: 26px;
-        }
+		h3 {
+			color: $BLACK;
+			font-size: 18px !important;
+			line-height: 26px;
+		}
 
-        ul,
-        ol {
-
-            li {
-                margin-top: 10px;
-            }
-        }
-    }
+		ul,
+		ol {
+			li {
+				margin-top: 10px;
+			}
+		}
+		ul {
+			column-count: 2;
+			column-gap: 20px;
+			li {
+				&::before {
+					color: $LIGHT_BLUE;
+					font-size: 20px;
+					text-align: center;
+					line-height: 24px;
+				}
+			}
+		}
+		ol {
+			list-style: none;
+			display: grid;
+			grid-gap: 1rem;
+			counter-reset: orderedlist;
+			li {
+				display: grid;
+				grid-template-columns: 0 1fr;
+				grid-gap: 1.75rem;
+				align-items: start;
+				// font-size: 1.5rem;
+				// line-height: 1.25rem;
+				&::before {
+					counter-increment: orderedlist;
+					content: counter(orderedlist);
+					font-family: 'Indie Flower';
+					font-size: 24px;
+					line-height: 14px;
+					width: 24px;
+					padding-top: 0.25rem;
+					text-align: center;
+					color: $WHITE;
+					background-color: $LIGHT_BLUE;
+					border-radius: 0.25rem;
+				}
+			}
+		}
+	}
 }

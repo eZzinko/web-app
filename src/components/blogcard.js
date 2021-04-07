@@ -23,7 +23,6 @@ const BlogCard = ({ data, setAsyncDataActive, setAsyncDataID }) => {
             {/* <div className="blogcard" onClick={linkHandler}> */}
             <div className="blogcard">
                 <div className="img-place" style={backgroundImage}>
-                    <div className="shadow-burn"></div>
                 </div>
                 <div className="text-area">
                     <h3>{data.name}</h3>

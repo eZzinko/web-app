@@ -1,0 +1,71 @@
+.editPage {
+	input {
+		max-width: 160px;
+		background-color: transparent;
+		border: 1px solid $LIGHT_BLUE;
+		padding: 5px;
+		outline: none;
+		color: $BLACK;
+		&::placeholder {
+			color: $LIGHT_BLUE;
+		}
+		&.__heading {
+			color: $WHITE;
+		}
+		&.heading {
+			max-width: 100%;
+			text-align: center;
+		}
+	}
+	textarea {
+		width: 100%;
+		resize: none;
+		overflow: hidden;
+		font-family: 'Poppins', sans-serif;
+		border: none;
+		padding: 5px;
+	}
+	select {
+		margin-top: 15px;
+		background-color: $LIGHT_BLUE;
+		border: none;
+		padding: 5px;
+		height: 40px;
+		font-size: 12px;
+		margin-right: 20px;
+		width: 150px;
+		outline: 2px solid $LIGHT_BLUE;
+		outline-offset: 2px;
+		option {
+			font-size: 14px;
+			background-color: $LIGHT_GRAY;
+			&:nth-child(2n) {
+				background-color: $WHITE;
+			}
+		}
+	}
+	.cover-panel {
+		h3 {
+			input {
+				font-size: clamp(26px, 2vw, 20rem);
+			}
+		}
+	}
+	.noStyle {
+		border: none !important;
+	}
+}
+.cover {
+	form {
+		display: flex;
+		flex-direction: column;
+	}
+	button {
+		margin-top: 20px;
+		height: 30px;
+		background-color: $LIGHT_BLUE;
+		border: 2px solid $WHITE;
+		width: 100%;
+		cursor: pointer;
+	}
+}

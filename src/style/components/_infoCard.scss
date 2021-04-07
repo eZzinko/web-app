@@ -1,62 +1,71 @@
 @import '../variables';
 
 .info-card {
-    max-width: 420px;
-    width: 100%;
-    background-color: $WHITE;
-    border-radius: 10px;
-    padding: 30px 20px 20px 20px;
-    @include box-shadow();
+	max-width: 420px;
+	width: 100%;
+	min-height: 200px;
+	background-color: $WHITE;
+	border-radius: 10px;
+	padding: 30px 20px 20px 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	@include box-shadow();
 
-    &.large {
-        max-width: 540px;
-    }
+	&.large {
+		max-width: 540px;
+	}
 
-    .info-card-content {
-        .link {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
+	.info-card-content {
+		.link {
+			display: flex;
+			align-items: center;
+			margin-bottom: 15px;
 
-            .icon {
-                height: 50px;
-                width: 50px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin-right: 15px;
+			.icon {
+				height: 50px;
+				width: 50px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-right: 15px;
 
-                svg {
-                    height: 32px;
-                }
-            }
+				svg {
+					height: 32px;
+				}
+			}
 
-            .content {}
-        }
-    }
+			.content {
+			}
+		}
+	}
 
-    .info-card-footer {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
+	.info-card-footer {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
 
-        button {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            outline: none !important;
-            border: 1px solid $LIGHT_BLACK;
-            background-color: $LIGHT_BLACK;
-            cursor: pointer;
-            ;
+		button {
+			width: 20px;
+			height: 20px;
+			border-radius: 50%;
+			outline: none !important;
+			border: 1px solid $LIGHT_BLACK;
+			background-color: $LIGHT_BLACK;
+			cursor: pointer;
+			&:not(:last-child) {
+				margin-right: 15px;
+			}
 
-            &:not(:last-child) {
-                margin-right: 15px;
-            }
-
-            &.active {
-                background-color: transparent;
-            }
-        }
-    }
+			&.active {
+				background-color: transparent;
+			}
+		}
+	}
+}
+@media screen and (max-width: 1200px) {
+	.info-card {
+		width: auto;
+		margin: 0 auto;
+	}
 }

@@ -1,0 +1,78 @@
+.filterModule {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 20px auto 140px auto;
+	max-width: 660px;
+	height: 100%;
+	max-height: 80px;
+	padding: 0 15px;
+
+	&__dropdown {
+		position: relative;
+		display: flex;
+
+		.dropdown-content {
+			margin-top: 70px;
+			display: none;
+			position: absolute;
+			background-color: $WHITE;
+			min-width: 160px;
+			z-index: 1;
+			@include box-shadow();
+
+			button {
+				background-color: $WHITE;
+				border: none;
+				width: 100%;
+				text-align: left;
+				color: $BLACK;
+				padding: 20px 16px;
+				text-decoration: none;
+				display: block;
+
+				&:hover {
+					background-color: $LIGHT_BLUE;
+				}
+			}
+			.activeButton {
+				background-color: red !important;
+			}
+		}
+
+		&:hover .dropdown-content,
+		&:focus .dropdown-content {
+			display: block;
+		}
+
+		&:hover .dropbtn {
+			background-color: $LIGHT_BLUE;
+		}
+	}
+	&--dropbtn {
+		background-color: $WHITE;
+		color: $BLACK;
+		padding: 16px;
+		font-size: 16px;
+		border: none;
+		cursor: pointer;
+		height: 70px;
+	}
+}
+
+// .filterModule {
+// 	background-color: rgba(100, 100, 100, 0.5);
+// 	display: flex;
+// 	flex-wrap: wrap;
+
+// 	&--dropbtn {
+// 		background-color: $WHITE;
+// 		color: $BLACK;
+// 		padding: 16px;
+// 		font-size: 16px;
+// 		border: none;
+// 		cursor: pointer;
+// 		height: 70px;
+// 	}
+// }

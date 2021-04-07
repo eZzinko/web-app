@@ -1,0 +1,104 @@
+// a.groupcard {
+//     max-width: 420px;
+//     width: 100%;
+//     height: 250px;
+
+//     .groupcard {
+//         background: url("../../img/mainpicture.jpg") brown;
+//         background-size: cover;
+//         background-repeat: no-repeat;
+//         background-position: center center;
+//         // ---
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//         position: relative;
+//         margin-bottom: 15px;
+//         margin-right: 15px;
+//         // ---
+//         border-radius: 15px;
+
+//         &:nth-child(2n+2) {
+//             margin-right: 0;
+//         }
+
+//         // @media screen and (max-width: 1330px) {
+//         //     &:nth-child(2n+2) {
+//         //         margin-right: 0;
+//         //     }
+//         // }
+
+//         @include box-shadow();
+
+
+
+//         h2 {
+//             font-size: clamp(32px, 3vw, 36px);
+//             text-align: center;
+//             padding: 15px;
+//             color: $LIGHT_GRAY;
+//             font-weight: $BOLD;
+//             position: absolute;
+//             z-index: 1;
+//             cursor: pointer;
+//             transition: 0.15s;
+
+//             &:hover+.shadow-burn {
+//                 opacity: 0.2;
+//             }
+//         }
+
+//         .shadow-burn {
+//             background-color: #000000;
+//             width: 100%;
+//             height: 100%;
+//             opacity: 0.5;
+//             position: absolute;
+//             transition: 0.15s;
+//             border-radius: 15px;
+//             cursor: pointer;
+
+//             &:hover {
+//                 opacity: 0.2;
+//             }
+//         }
+
+//     }
+// }
+
+a.category {
+    background: url("../../img/mainpicture.jpg") $LIGHT_BLUE;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    width: 100%;
+    max-width: 410px;
+
+    height: 200px;
+    margin-right: 15px;
+    margin-top: 15px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    border-radius: 15px;
+    @include box-shadow();
+    position: relative;
+
+    @include shadow-burn();
+
+    .category {
+        &__heading {
+            font-size: clamp(32px, 3vw, 36px);
+            color: $WHITE;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+    }
+
+}

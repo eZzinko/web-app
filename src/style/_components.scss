@@ -1,25 +1,26 @@
 @import './components/infoCard';
-@import './components/groupCard';
+@import './components/categoryCard';
 @import './components/blogCard';
 @import './components/recepieCard';
 @import './components/blogDetailCard';
 @import './components/login';
 @import './components/placeholderCard';
-
+@import './components/searchBar';
+@import './components/filterModule';
 
 .button-save {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    background-color: rgba(16, 148, 27, 0.486);
-    border: 0;
-    font-size: 18px;
-    padding: 10px 15px;
-    transition: 250ms ease;
+	position: fixed;
+	right: 30px;
+	bottom: 30px;
+	background-color: rgba(16, 148, 27, 0.486);
+	border: 0;
+	font-size: 18px;
+	padding: 10px 15px;
+	transition: 250ms ease;
 
-    &:hover {
-        background-color: rgba(16, 148, 27, 1);
-        color: $WHITE;
-        cursor: pointer;
-    }
+	&:hover {
+		background-color: rgba(16, 148, 27, 1);
+		color: $WHITE;
+		cursor: pointer;
+	}
 }

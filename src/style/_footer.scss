@@ -1,43 +1,42 @@
 footer {
-    background-color: $WHITE;
-    // background-color: red;
-    min-height: 20vh;
+	background-color: $WHITE;
+	// background-color: red;
+	min-height: 20vh;
 
-    .footer-container {
+	.footer-container {
+		// background-color: blue;
+		padding: 15px;
+		max-width: 1330px;
+		margin: 0 auto;
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: row;
 
-        // background-color: blue;
-        padding: 15px;
-        max-width: 1330px;
-        margin: 0 auto;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
+		justify-content: space-between;
 
-        .column {
-            h5 {
-                font-size: 26px;
-                font-weight: $BOLD;
-                padding-bottom: 15px;
-            }
+		.column {
+			h5 {
+				font-size: 26px;
+				font-weight: $BOLD;
+				padding-bottom: 15px;
+			}
 
-            ul {
-                list-style: none;
+			ul {
+				list-style: none;
 
-                li {}
-            }
-        }
-    }
+				li {
+				}
+			}
+		}
+	}
 
-    .copy {
-        text-align: center;
+	.copy {
+		text-align: center;
 
-        p {
-            font-weight: $LIGHT !important;
-            font-size: 10px !important;
-            margin-top: 15px;
-        }
-    }
-
+		p {
+			font-weight: $LIGHT !important;
+			font-size: 10px !important;
+			margin-top: 15px;
+		}
+	}
 }
