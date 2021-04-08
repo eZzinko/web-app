@@ -30,55 +30,38 @@ const ReceptoryFile = ({ logged }) => {
 			.doc(currentDoc.id)
 			.delete()
 			.then(() => {
-				console.log('Document successfully deleted!');
 				history.push('/receptar');
 				alert('Recept by úspěšně odstraněn');
 			})
 			.catch((err) => {
-				console.error('Error removing document: ', err);
 				alert('Chyba při odstranění receptu: ', err);
 			});
 	};
 
-	// const [firestoreLoading, setFirestoreLoading] = useState(true);
-
-	// const [asyncData, setAsyncData] = useState([]);
-	// const [data, setData] = useState([]);
-
-	// console.log("[useHistory]: ", history.location.pathname);
 	const historyLink = history.location.pathname;
 	const historySubString = historyLink.substring(10);
-	// console.log("[History subString]: ", historySubString);
 
 	const getRecipes = async () => {
 		let activeData = [];
-		// console.log("[activeData SET]:", activeData);
-		activeData = await firebase.firestore().collection('recipe').doc(historySubString).get();
-		// console.log("[activeData POS]:", activeData);
-		setCurrentDoc(activeData.data());
+
+		await firebase
+			.firestore()
+			.collection('recipe')
+
+			.doc(historySubString)
+			.get()
+			.then((data) => {
+				activeData = data.data();
+			});
+
+		setCurrentDoc(activeData);
 	};
-	// console.log(currentDoc);
 
 	//Execute API get request
 	useEffect(() => {
 		getRecipes();
 		// eslint-disable-next-line
 	}, []);
-
-	// useEffect(() => {
-	//     if (currentDoc.length > 0) {
-	//         setFirestoreLoading(false);
-	//         console.log("[Document not ready]");
-
-	//     }
-	// })
-
-	// const cookies = new Cookies();
-
-	// cookies.set('Recipe Data', currentDoc, { path: `/receptar/${currentDoc.id}`, expires: new Date(Date.now() + 30) });
-	// console.log(cookies.get('Recipe Data'));
-
-	// console.log("[History]: ", window.history);
 
 	return (
 		<>

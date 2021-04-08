@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../firebase';
+import logo_img from '../img/hatLogo.png';
 
 const Footer = ({ logged, setLogged }) => {
 	const logOut = () => {
@@ -10,6 +11,7 @@ const Footer = ({ logged, setLogged }) => {
 
 		document.body.style.overflow = 'visible';
 	};
+
 	return (
 		<>
 			<footer>
@@ -28,8 +30,9 @@ const Footer = ({ logged, setLogged }) => {
 							</li>
 						</ul>
 					</div>
-					<div className="column"></div>
-					<div className="column"></div>
+					<div className="column">
+						<img src={logo_img} alt="Footer logo"></img>
+					</div>
 					<div className="column">
 						<h5>Uživatel</h5>
 						<ul>
@@ -51,7 +54,7 @@ const Footer = ({ logged, setLogged }) => {
 					</div>
 				</div>
 				<div className="copy">
-					<span>Copyright &copy; 2020 - DEV&amp;Design Daniel Neuman</span>
+					<span>Copyright &copy; 2021 - DEV&amp;Design Daniel Neuman</span>
 				</div>
 			</footer>
 		</>

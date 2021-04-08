@@ -1,84 +1,82 @@
 .login-page {
-    background-color: $LIGHT_GRAY;
+	background-color: $LIGHT_GRAY;
 
-    width: 100%;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	width: 100%;
+	min-height: 80vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-    .login-card {
-        background-color: $WHITE;
+	.login-card {
+		background-color: $WHITE;
 
-        max-width: 430px;
-        width: 100%;
-        @include box-shadow();
-        padding: 15px;
-        border: 2px solid $WHITE;
-        outline: 2px solid $LIGHT_GRAY;
-        outline-offset: -4px;
+		max-width: 430px;
+		width: 100%;
+		@include box-shadow();
+		padding: 15px;
+		border: 2px solid $WHITE;
+		outline: 2px solid $LIGHT_GRAY;
+		outline-offset: -4px;
 
-        .login-card-header {
-            h3 {
-                font-size: clamp(1rem, 32px, 4rem);
-                text-align: center;
-                color: $BLACK;
-            }
-        }
+		.login-card-header {
+			h3 {
+				font-size: clamp(1rem, 32px, 4rem);
+				text-align: center;
+				color: $BLACK;
+			}
+		}
 
-        .login-card-body {
+		.login-card-body {
+			display: flex;
+			flex-direction: column;
+			margin: 15px 0;
 
-            display: flex;
-            flex-direction: column;
-            margin: 15px 0;
+			label {
+				font-size: 16px;
+				margin-bottom: 8px;
+			}
 
-            label {
-                font-size: 16px;
-                margin-bottom: 8px;
-            }
+			input {
+				font-size: 16px;
+				padding: 10px 15px;
+				margin-bottom: 15px;
+				outline: 2px solid $BLACK;
+				outline-offset: -2px;
+				border: 2px solid $BLACK;
+				transition: outline-offset 200ms ease;
 
-            input {
-                font-size: 16px;
-                padding: 10px 15px;
-                margin-bottom: 15px;
-                outline: 2px solid $BLACK;
-                outline-offset: -2px;
-                border: 2px solid $BLACK;
-                transition: outline-offset 200ms ease;
+				&:focus,
+				&:hover {
+					outline-offset: -6px;
+				}
+			}
+		}
 
-                &:focus,
-                &:hover {
-                    outline-offset: -6px;
-                }
-            }
-        }
+		.login-card-footer {
+			button {
+				display: inline-block;
+				cursor: pointer;
+				text-decoration: none;
+				font-size: inherit;
+				border: 0;
+				line-height: 1;
+				background: none;
+				padding: 8px 16px;
+				margin-right: 15px;
 
-        .login-card-footer {
-            button {
-                display: inline-block;
-                cursor: pointer;
-                text-decoration: none;
-                font-size: inherit;
-                border: 0;
-                line-height: 1;
-                background: none;
-                padding: 8px 16px;
-                margin-right: 15px;
+				border: 2px solid $DARK_BLUE;
+				background-color: $DARK_BLUE;
+				color: white;
+				outline: 2px solid $LIGHT_BLUE;
+				transition: outline-offset 200ms ease;
 
-                border: 2px solid $DARK_BLUE;
-                background-color: $DARK_BLUE;
-                color: white;
-                outline: 2px solid $LIGHT_BLUE;
-                transition: outline-offset 200ms ease;
-
-                &:hover,
-                &:focus {
-
-                    outline: 2px solid $LIGHT_BLUE;
-                    outline-offset: -6px;
-                }
-            }
-        }
-    }
+				&:hover,
+				&:focus {
+					outline: 2px solid $LIGHT_BLUE;
+					outline-offset: -6px;
+				}
+			}
+		}
+	}
 }

@@ -64,7 +64,6 @@ const Mainpage = () => {
 	// eslint-disable-next-line
 	useEffect(() => {
 		if (asyncData.length > 0) {
-			// console.log("Undefined");
 			setFirestoreLoading(false);
 		}
 	});

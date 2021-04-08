@@ -65,9 +65,8 @@ const Profile = () => {
 		}
 	});
 
-	console.log(asyncData);
 	const placeholderArr = [];
-	for (let i = 0; i < 6; i++) {
+	for (let i = 0; i < 4; i++) {
 		// eslint-disable-next-line
 		placeholderArr.push(<PlaceholderCard key={i} style={true} />);
 	}

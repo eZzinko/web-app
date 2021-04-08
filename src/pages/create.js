@@ -226,7 +226,6 @@ const Create = () => {
 
 	const [imageAsFile, setImageAsFile] = useState('');
 
-	console.log(imageAsFile);
 	const handleImageAsFile = (e) => {
 		const image = e.target.files[0];
 		setImageAsFile(image);
@@ -256,7 +255,6 @@ const Create = () => {
 			});
 	};
 
-	console.log(cover);
 	return (
 		<div className="editPage">
 			<div className="cover" style={backgroundImage}>

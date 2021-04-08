@@ -93,8 +93,6 @@ const Receptory = ({ setAsyncDataActive }) => {
 	};
 	const uniqeCat = [...new Set(asyncCategory)];
 
-	// console.log("[asyncData]: ", asyncData);
-
 	//Execute API get request
 	useEffect(() => {
 		getRecipes();
@@ -127,15 +125,15 @@ const Receptory = ({ setAsyncDataActive }) => {
 					<h2>Najděte si, na co máte chuť</h2>
 					<SearchBar placeholder="Na co máte chuť" onChange={(e) => searchHandler(e.target.value)} />
 					<div className="filterModule">
-						{uniqeCat.map((data) => {
+						{uniqeCat.map((data, key) => {
 							return (
-								<div className="filterModule__dropdown">
+								<div className="filterModule__dropdown" key={key}>
 									<button className="filterModule--dropbtn">{data}</button>
 									<div className="dropdown-content">
-										{asyncData.map((asyncDataFor) => {
+										{asyncData.map((asyncDataFor, key) => {
 											if (asyncDataFor.category === data) {
 												return (
-													<button value={asyncDataFor.subCategory} key={asyncDataFor.id} onClick={(e) => filterHandler(e.target.value)}>
+													<button value={asyncDataFor.subCategory} key={key} onClick={(e) => filterHandler(e.target.value)}>
 														{asyncDataFor.subCategory}
 													</button>
 												);

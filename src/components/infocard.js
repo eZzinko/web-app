@@ -2,22 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import firebase from '../firebase';
-// import PlaceholderCard from './placeholderCard';
 import { Link } from 'react-router-dom';
 
-const Infocard = ({ asyncDataMain }) => {
+const Infocard = () => {
 	const [mainData, setMainData] = useState([]);
 	const [activeMain, setActiveMain] = useState([]);
 	const [firestoreLoading, setFirestoreLoading] = useState(true);
 
 	const [asyncData, setAsyncData] = useState([]);
 
-	console.log('[activeMain]: ', activeMain);
-
 	const displayImgHandler = (e) => {
-		// setActiveData(asyncDataMain[asyncDataMain.findIndex(x => x.id === e.target.dataset.id)]);
-		console.log('[Dataset ID]: ', e.target.dataset.id);
-		console.log('[Dataset clicked ID]: ', mainData[mainData.findIndex((x) => x.id === e.target.dataset.id)]);
 		setActiveMain(mainData[mainData.findIndex((x) => x.id === e.target.dataset.id)]);
 	};
 
@@ -32,7 +26,6 @@ const Infocard = ({ asyncDataMain }) => {
 			allArr.push(doc.data());
 		}
 		setAsyncData(allArr);
-		console.log('[all Data]: ', allArr);
 
 		allArr.filter((data) => {
 			if (data.main === true) {
@@ -42,7 +35,6 @@ const Infocard = ({ asyncDataMain }) => {
 		});
 		setMainData(getMain);
 		setActiveMain(getMain[0]);
-		console.log('[Main Data]: ', getMain);
 	};
 
 	//Execute API get request
@@ -54,7 +46,6 @@ const Infocard = ({ asyncDataMain }) => {
 	// eslint-disable-next-line
 	useEffect(() => {
 		if (asyncData.length > 0) {
-			// console.log("Undefined");
 			setFirestoreLoading(false);
 		}
 	});
@@ -65,9 +56,7 @@ const Infocard = ({ asyncDataMain }) => {
 
 	return (
 		<div className="header-box">
-			<div className="img-box" style={backgroundImage}>
-				{/* <div className="img-box" > */}
-			</div>
+			<div className="img-box" style={backgroundImage}></div>
 			{firestoreLoading ? (
 				<div className="card-box">
 					<div className="info-card">
@@ -104,7 +93,6 @@ const Infocard = ({ asyncDataMain }) => {
 							</span>
 							<div className="buttons">
 								{mainData.map((image) => (
-									// <button className={image.id === asyncDataMain.id ? "nextImg active" : "nextImg"} onClick={displayImgHandler} data-id={image.id}></button>
 									<button
 										key={image.id}
 										onClick={displayImgHandler}

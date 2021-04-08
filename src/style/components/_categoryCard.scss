@@ -30,8 +30,6 @@
 
 //         @include box-shadow();
 
-
-
 //         h2 {
 //             font-size: clamp(32px, 3vw, 36px);
 //             text-align: center;
@@ -67,38 +65,36 @@
 // }
 
 a.category {
-    background: url("../../img/mainpicture.jpg") $LIGHT_BLUE;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
+	background: url('../../img/mainpicture.jpg') $LIGHT_BLUE;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
 
-    width: 100%;
-    max-width: 410px;
+	width: 100%;
+	max-width: 410px;
 
-    height: 200px;
-    margin-right: 15px;
-    margin-top: 15px;
+	height: 200px;
+	margin-right: 15px;
+	margin-top: 15px;
 
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	text-decoration: none;
+	border-radius: 15px;
+	@include box-shadow();
+	position: relative;
 
-    text-decoration: none;
-    border-radius: 15px;
-    @include box-shadow();
-    position: relative;
+	@include shadow-burn();
 
-    @include shadow-burn();
-
-    .category {
-        &__heading {
-            font-size: clamp(32px, 3vw, 36px);
-            color: $WHITE;
-            position: absolute;
-            transform: translate(-50%, -50%);
-            width: 100%;
-        }
-    }
-
+	.category {
+		&__heading {
+			font-size: clamp(32px, 3vw, 36px);
+			color: $WHITE;
+			position: absolute;
+			transform: translate(-50%, -50%);
+			width: 100%;
+		}
+	}
 }

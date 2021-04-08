@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo_img from '../img/logo.svg';
+import logo_img from '../img/hatLogo.png';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
@@ -15,7 +15,7 @@ const Nav = ({ logged, setLogged }) => {
 		}
 	};
 	window.addEventListener('scroll', changeBackground);
-	// Scroll effect---¨
+	// Scroll effect---
 	const [navOpen, setNavOpen] = useState(false);
 	const navOpenHandler = () => {
 		if (navOpen) {
@@ -40,6 +40,7 @@ const Nav = ({ logged, setLogged }) => {
 					<Link to="/">
 						<h1>
 							<img src={logo_img} alt="logo" />
+							Můj receptář
 						</h1>
 					</Link>
 					<div className="nav-items">

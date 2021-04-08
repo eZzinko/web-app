@@ -39,7 +39,7 @@ export const AuthProvider = ({ children, setLogged, currentUser, setCurrentUser 
 					height: '80vh',
 				}}
 			>
-				<h1>Loading User...</h1>
+				<h1>Načítání uživatele...</h1>
 			</div>
 		);
 	}

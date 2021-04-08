@@ -11,49 +11,109 @@ const Edit = () => {
 	useLayoutEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);
+	useEffect(() => {
+		document.title = `Upravit recept | Moje kuchařka`;
+	});
 
-	const [currentDoc, setCurrentDoc] = useState([]);
-	const backgroundImage = {
-		backgroundImage: `url(${currentDoc.cover})`,
-	};
 	const history = useHistory();
 	const ref = firebase.firestore().collection('recipe');
 
 	const { currentUser } = useContext(AuthContext);
-
-	const [artist, setArtist] = useState();
+	const [artist] = useState(currentUser.displayName); //Set by current logged user
 	const [cover, setCover] = useState('');
-	const [createdAt, setCreatedAt] = useState(Date.now());
+	const [createdAt, setCreatedAt] = useState(Date.now()); //Set by current time
 	const [description, setDescription] = useState('');
 	const [madePrice, setMadePrice] = useState('');
 	const [madeTime, setMadeTime] = useState('');
-	// eslint-disable-next-line
-	const [main, setMain] = useState(false);
+	const [main, setMain] = useState(false); //Default main is disable - must be done manualy
+	const [tipOfDay, setTipOfDay] = useState(false);
 	const [name, setName] = useState('');
 	const [category, setCategory] = useState('');
 	const [subCategory, setSubCategory] = useState('');
-	const [content, setContent] = useState('');
-	const [firestoreLoading, setFirestoreLoading] = useState(true);
-
-	const timestamp = new Date(currentDoc.createdAt);
-	const humanDate = new Date(timestamp).getDate() + '. ' + (new Date(timestamp + 60).getMonth() + 1) + '. ' + new Date(timestamp).getFullYear();
+	const [id, setId] = useState('');
+	const [content, setContent] = useState(null); //Set by Quill
 
 	function addRecipe(editRecipe) {
-		console.log(editRecipe);
 		ref
-			.doc(currentDoc.id)
-			.set(editRecipe)
-			.then(() => {
-				console.log('Document successfully written!');
+			.doc(id)
+			.update({
+				artist: artist,
+				cover: cover,
+				createdAt: createdAt,
+				description: description,
+				madePrice: madePrice,
+				madeTime: madeTime,
+				main: main,
+				tipOfDay: tipOfDay,
+				name: name,
+				category: category,
+				subCategory,
+				content: content,
 			})
+			.then(() => {})
 			.catch((err) => {
 				console.error('Error writing document: ', err);
 			});
 		history.push('/receptar');
 	}
 
-	// Quill
+	const historyLink = history.location.pathname;
+	const historySubString = historyLink.substring(6);
+
+	const backgroundImage = {
+		backgroundImage: `url(${cover})`,
+	};
+
+	const timestamp = new Date();
+	const humanDate = new Date(timestamp).getDate() + '. ' + (new Date(timestamp + 60).getMonth() + 1) + '. ' + new Date(timestamp).getFullYear();
+
+	const getRecipes = async () => {
+		let activeData = [];
+		// eslint-disable-next-line
+		activeData = await firebase
+			.firestore()
+			.collection('recipe')
+			.doc(historySubString)
+			.get()
+			.then((doc) => {
+				if (doc.exists) {
+					setCurrentData(doc.data());
+				} else {
+					alert('Data nebyla nalezena');
+				}
+			})
+			.catch((err) => {
+				alert('Vyskytla se chyba: ', err);
+			});
+	};
+
+	const setCurrentData = (data) => {
+		setCover(data.cover);
+		setCreatedAt(data.createdAt);
+		setDescription(data.description);
+		setMadePrice(data.madePrice);
+		setMadeTime(data.madeTime);
+		setMain(data.main || false);
+		setTipOfDay(data.tipOfDay || false);
+		setName(data.name);
+		setCategory(data.category);
+		setSubCategory(data.subCategory);
+		setId(data.id);
+		setContent(data.content || '');
+	};
+	//Execute API get request
+	useEffect(() => {
+		getRecipes();
+		// eslint-disable-next-line
+	}, []);
+
+	const [selectRef, setSelectedRef] = useState(null);
+
+	//Quill
+	//Quill emoji setup
 	const { EmojiBlot, ShortNameEmoji, ToolbarEmoji, TextAreaEmoji } = quillEmoji;
+
+	//Write emoji to subscription of Quill
 	Quill.register(
 		{
 			'formats/emoji': EmojiBlot,
@@ -64,6 +124,7 @@ const Edit = () => {
 		true,
 	);
 
+	//Quill modules - set what is displayed
 	const modules = {
 		toolbar: {
 			container: [
@@ -81,6 +142,7 @@ const Edit = () => {
 		'emoji-shortname': true,
 	};
 
+	//Quill formats - set what is working
 	const formats = [
 		'header',
 		'font',
@@ -100,52 +162,11 @@ const Edit = () => {
 		'color',
 		'emoji',
 	];
+
+	//Change state content based on user input
 	const quillHandleChange = (value) => {
 		setContent(value);
-		console.log(content);
 	};
-
-	useEffect(() => {
-		document.title = `Nový recept | Moje kuchařka`;
-	});
-
-	const historyLink = history.location.pathname;
-	const historySubString = historyLink.substring(6);
-	console.log('[History subString]: ', historySubString);
-
-	const getRecipes = async () => {
-		let activeData = [];
-		console.log('[activeData SET]:', activeData);
-		activeData = await firebase.firestore().collection('recipe').doc(historySubString).get();
-		console.log('[activeData POS]:', activeData);
-		setCurrentDoc(activeData.data());
-		setArtist(currentDoc.artist);
-		setCover(currentDoc.cover);
-		setCreatedAt(currentDoc.createdAt);
-		setDescription(currentDoc.description);
-		setMadePrice(currentDoc.madePrice);
-		setMadeTime(currentDoc.madeTime);
-		setMain(currentDoc.main);
-		setName(currentDoc.name);
-		setCategory(currentDoc.category);
-		setSubCategory(currentDoc.subCategory);
-		setContent(currentDoc.content);
-	};
-	console.log(currentDoc);
-
-	//Execute API get request
-	useEffect(() => {
-		getRecipes();
-		// eslint-disable-next-line
-	}, []);
-	useEffect(() => {
-		if (currentDoc.artist != '') {
-			setFirestoreLoading(false);
-		}
-		console.log('Current Doc', currentDoc);
-	});
-
-	const [selectRef, setSelectedRef] = useState(null);
 
 	const CATEGORY = [
 		{
@@ -232,126 +253,114 @@ const Edit = () => {
 	];
 	const onChangeHander = (e) => {
 		setSelectedRef(e.target.value);
-		setCategory(e.target.value);
 	};
-	const subData = CATEGORY.find((value) => value.name == selectRef);
-	if (firestoreLoading) {
-		return <h1>Načítání</h1>;
-	} else {
-		return (
-			<div className="editPage">
-				<div className="cover" style={backgroundImage}>
-					<div className="overlay"></div>
-					<div className="cover-panel-full">
-						<div className="cover-panel">
-							<div className="item">
+	const subData = CATEGORY.find((value) => value.name === selectRef);
+	return (
+		<div className="editPage">
+			<div className="cover" style={backgroundImage}>
+				<div className="overlay"></div>
+				<div className="cover-panel-full">
+					<div className="cover-panel">
+						<div className="item">
+							<input
+								type="number"
+								className="__heading"
+								onChange={(e) => setMadeTime(e.target.value)}
+								onLoad={(e) => setMadeTime(e.target.value)}
+								placeholder="MadeTime"
+								defaultValue={madeTime}
+							/>
+							min
+						</div>
+						<div className="item">
+							<h3>
 								<input
-									type="number"
-									className="__heading"
-									onChange={(e) => setMadeTime(e.target.value)}
-									onLoad={(e) => setMadeTime(e.target.value)}
-									placeholder="MadeTime"
-									defaultValue={currentDoc.madeTime}
+									type="text"
+									className="__heading heading"
+									onChange={(e) => setName(e.target.value)}
+									onLoad={(e) => setName(e.target.value)}
+									placeholder="Name"
+									defaultValue={name}
 								/>
-								min
-							</div>
-							<div className="item">
-								<h3>
-									<input
-										type="text"
-										className="__heading heading"
-										onChange={(e) => setName(e.target.value)}
-										onLoad={(e) => setName(e.target.value)}
-										placeholder="Name"
-										defaultValue={currentDoc.name}
-									/>
-								</h3>
-							</div>
-							<div className="item">
-								<input
-									type="number"
-									className="__heading"
-									onChange={(e) => setMadePrice(e.target.value)}
-									onLoad={(e) => setMadePrice(e.target.value)}
-									placeholder="MadePrice"
-									defaultValue={currentDoc.madePrice}
-								/>{' '}
-								Kč
-							</div>
+							</h3>
+						</div>
+						<div className="item">
+							<input
+								type="number"
+								className="__heading"
+								onChange={(e) => setMadePrice(e.target.value)}
+								onLoad={(e) => setMadePrice(e.target.value)}
+								placeholder="MadePrice"
+								defaultValue={madePrice}
+							/>{' '}
+							Kč
 						</div>
 					</div>
 				</div>
-				<div className="body-align">
-					<div className="short-info">
+			</div>
+			<div className="body-align">
+				<div className="short-info">
+					<span>
+						<textarea
+							type="text"
+							onChange={(e) => setDescription(e.target.value)}
+							onLoad={(e) => setDescription(e.target.value)}
+							placeholder="Description"
+							rows="10"
+							defaultValue={description}
+						/>
+					</span>
+				</div>
+				<div className="content-box">
+					<div className="content">
+						<ReactQuill
+							onChange={quillHandleChange}
+							onLoad={quillHandleChange}
+							defaultValue={content || ''}
+							theme="snow"
+							modules={modules}
+							formats={formats}
+							placeholder="Přidejte váš úžasný recept"
+						/>
+					</div>
+					<div className="side-bar">
+						<input type="text" value={humanDate} placeholder="CreatedAt" disabled className="noStyle" defaultValue={humanDate} />
+
+						<input type="text" disabled value={currentUser.displayName} className="noStyle" defaultValue={artist} />
 						<span>
-							{/* <input type="text" onChange={(e) => setDescription(e.target.value)} placeholder="Description" defaultValue={currentDoc.description} /> */}
-							<textarea
-								type="text"
-								onChange={(e) => setDescription(e.target.value)}
-								onLoad={(e) => setDescription(e.target.value)}
-								placeholder="Description"
-								rows="10"
-								defaultValue={currentDoc.description}
-							/>
+							<select onChange={(e) => onChangeHander(e)} onLoad={(e) => setCategory(e.target.value)} defaultValue={category}>
+								{CATEGORY.map((value, key) => {
+									return (
+										<option value={value.name} key={key}>
+											{value.name}
+										</option>
+									);
+								})}
+							</select>
+						</span>
+						<span>
+							<select onChange={(e) => setSubCategory(e.target.value)} onLoad={(e) => setSubCategory(e.target.value)} defaultValue={subCategory}>
+								{subData?.subCategory?.map((item, key) => {
+									return (
+										<option value={item.name} key={key}>
+											{item.name}
+										</option>
+									);
+								})}
+							</select>
 						</span>
 					</div>
-					<div className="content-box">
-						<div className="content">
-							<ReactQuill
-								onChange={quillHandleChange}
-								onLoad={quillHandleChange}
-								defaultValue={currentDoc.content || ''}
-								theme="snow"
-								modules={modules}
-								formats={formats}
-								placeholder="Přidejte váš úžasný recept"
-							/>
-						</div>
-						<div className="side-bar">
-							<input type="text" value={humanDate} placeholder="CreatedAt" disabled className="noStyle" defaultValue={humanDate} />
-
-							<input type="text" disabled value={currentUser.displayName} className="noStyle" defaultValue={currentDoc.artist} />
-							<span>
-								<select onChange={(e) => onChangeHander(e)} onLoad={(e) => setCategory(e.target.value)} defaultValue={currentDoc.category}>
-									{CATEGORY.map((value, key) => {
-										return (
-											<option value={value.name} key={key}>
-												{value.name}
-											</option>
-										);
-									})}
-								</select>
-							</span>
-							<span>
-								<select
-									onChange={(e) => setSubCategory(e.target.value)}
-									onLoad={(e) => setSubCategory(e.target.value)}
-									defaultValue={currentDoc.subCategory}
-								>
-									{subData?.subCategory?.map((item, key) => {
-										return (
-											<option value={item.name} key={key}>
-												{item.name}
-											</option>
-										);
-									})}
-								</select>
-							</span>
-						</div>
-					</div>
 				</div>
-				<button
-					onClick={() => {
-						console.log(artist);
-						// addRecipe({ artist, cover, createdAt, description, id: uuid4(), madePrice, madeTime, main, name, category, subCategory, content });
-						addRecipe({ artist, cover, createdAt, description, id: uuid4(), madePrice, madeTime, main, name, category, subCategory, content });
-					}}
-					className="button-save"
-				>
-					Uložit
-				</button>
 			</div>
-		);
-	}
+			<button
+				onClick={() => {
+					addRecipe({ artist, cover, createdAt, description, id: uuid4(), madePrice, madeTime, main, name, category, subCategory, content });
+				}}
+				className="button-save"
+			>
+				Uložit
+			</button>
+		</div>
+	);
 };
 export default Edit;

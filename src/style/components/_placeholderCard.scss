@@ -1,51 +1,52 @@
 .placeholdercard {
-    max-width: 420px;
-    width: 100%;
-    height: 250px;
+	max-width: 420px;
+	width: 100%;
+	height: 250px;
+	margin-right: 15px;
 
-    .img-place {
-        background-image: linear-gradient(60deg, #d8d8d8, #b9b9b9, #a0a0a0, #8d8d8d, #696969, #626262);
-        background-size: 300%;
-        animation: gradient 1s infinite alternate;
-        max-width: 420px;
-        width: 100%;
-        height: 200px;
-        border-radius: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-    }
+	.img-place {
+		background-image: linear-gradient(60deg, #d8d8d8, #b9b9b9, #a0a0a0, #8d8d8d, #696969, #626262);
+		background-size: 300%;
+		animation: gradient 1s infinite alternate;
+		max-width: 420px;
+		width: 100%;
+		height: 200px;
+		border-radius: 15px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+	}
 
-    .text-area {
-        background-color: $WHITE;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        margin-top: -5px;
-        padding: 15px;
-        padding-top: 20px;
-        line-height: 27px;
+	.text-area {
+		background-color: $WHITE;
+		border-bottom-left-radius: 15px;
+		border-bottom-right-radius: 15px;
+		margin-top: -5px;
+		padding: 15px;
+		padding-top: 20px;
+		line-height: 27px;
 
-        h3 {
-            background-image: linear-gradient(60deg, #d8d8d8, #b9b9b9, #a0a0a0, #8d8d8d, #696969, #626262);
-            background-size: 300%;
-            animation: gradient 1s infinite alternate;
-            font-size: 22px;
-        }
+		h3 {
+			background-image: linear-gradient(60deg, #d8d8d8, #b9b9b9, #a0a0a0, #8d8d8d, #696969, #626262);
+			background-size: 300%;
+			animation: gradient 1s infinite alternate;
+			font-size: 22px;
+		}
 
-        hr {
-            border-color: $LIGHT_GRAY;
-            margin: 15px 0;
-        }
+		hr {
+			border-color: $LIGHT_GRAY;
+			margin: 15px 0;
+		}
 
-        .text-area-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+		.text-area-footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 
-            h3 {
-                width: 40%;
-            }
-        }
-    }
+			h3 {
+				width: 40%;
+			}
+		}
+	}
 }

@@ -1,81 +1,79 @@
 a.blogcard {
-    max-width: 410px;
-    width: 100%;
+	max-width: 410px;
+	width: 100%;
 
-    margin: 15px;
-    margin-left: 0;
+	margin: 15px;
+	margin-left: 0;
 
-    // &:nth-child(3n+3) {
-    //     margin-right: 0;
-    // }
+	// &:nth-child(3n+3) {
+	//     margin-right: 0;
+	// }
 
-    .blogcard {
-        .img-place {
-            background: url("../../img/mainpicture.jpg") $LIGHT_BLUE;
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            max-width: 420px;
-            width: 100%;
-            height: 200px;
-            border-radius: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
+	.blogcard {
+		.img-place {
+			background: url('../../img/mainpicture.jpg') $LIGHT_BLUE;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+			max-width: 420px;
+			width: 100%;
+			height: 200px;
+			border-radius: 15px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
 
-            a {
-                font-size: 53px;
-                color: $LIGHT_GRAY;
-                font-weight: $BOLD;
-                position: absolute;
-                z-index: 1;
-                cursor: pointer;
-                transition: 0.15s;
-            }
+			a {
+				font-size: 53px;
+				color: $LIGHT_GRAY;
+				font-weight: $BOLD;
+				position: absolute;
+				z-index: 1;
+				cursor: pointer;
+				transition: 0.15s;
+			}
 
-            @include shadow-burn();
+			@include shadow-burn();
+		}
 
-        }
+		.text-area {
+			background-color: $WHITE;
+			border-bottom-left-radius: 15px;
+			border-bottom-right-radius: 15px;
+			margin-top: -5px;
+			padding: 15px;
+			padding-top: 20px;
+			line-height: 27px;
 
-        .text-area {
-            background-color: $WHITE;
-            border-bottom-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            margin-top: -5px;
-            padding: 15px;
-            padding-top: 20px;
-            line-height: 27px;
+			h3 {
+				color: $BLACK;
+				font-size: 22px;
+			}
 
-            h3 {
-                color: $BLACK;
-                font-size: 22px;
-            }
+			hr {
+				border-color: $LIGHT_GRAY;
+				margin: 15px 0;
+			}
 
-            hr {
-                border-color: $LIGHT_GRAY;
-                margin: 15px 0;
-            }
+			.text-area-footer {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
 
-            .text-area-footer {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+				p {
+					font-size: 11px;
+					font-style: italic;
 
-                p {
-                    font-size: 11px;
-                    font-style: italic;
+					span {
+						font-size: 12px;
+					}
+				}
+			}
 
-                    span {
-                        font-size: 12px;
-                    }
-                }
-            }
-
-            span {
-                // background-color: burlywood;
-            }
-        }
-
-    }
+			span {
+				// background-color: burlywood;
+			}
+		}
+	}
 }
