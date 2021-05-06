@@ -75,7 +75,9 @@ const Mainpage = () => {
 	}
 	return (
 		<>
-			<div className="header">{/* <Infocard /> */}</div>
+			<div className="header">
+				<Infocard />
+			</div>
 			<div className="body-align">
 				<div className="advice">
 					<h2>Tip dnešního dne</h2>
