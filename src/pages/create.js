@@ -334,23 +334,27 @@ const Create = () => {
 				</div>
 			</div>
 			<button
-				onClick={() =>
-					addRecipe({
-						artist,
-						cover,
-						createdAt,
-						description,
-						id: uuid4(),
-						madePrice,
-						madeTime,
-						main,
-						name,
-						category,
-						subCategory,
-						content,
-						tipOfDay,
-					})
-				}
+				onClick={() => {
+					if (name === '' || content === '') {
+						alert('Název a obsah receptu musí být vyplněn');
+					} else {
+						addRecipe({
+							artist,
+							cover,
+							createdAt,
+							description,
+							id: uuid4(),
+							madePrice,
+							madeTime,
+							main,
+							name,
+							category,
+							subCategory,
+							content,
+							tipOfDay,
+						});
+					}
+				}}
 				className="button-save"
 			>
 				Uložit

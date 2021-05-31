@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../firebase';
-import logo_img from '../img/hatLogo.png';
+import logo_img from '../img/logo-3.svg';
 
 const Footer = ({ logged, setLogged }) => {
 	const logOut = () => {

@@ -50,7 +50,9 @@ const Edit = () => {
 				subCategory,
 				content: content,
 			})
-			.then(() => {})
+			.then(() => {
+				alert('Data byla úspěšně aktualizována');
+			})
 			.catch((err) => {
 				console.error('Error writing document: ', err);
 			});
@@ -316,7 +318,7 @@ const Edit = () => {
 						<ReactQuill
 							onChange={quillHandleChange}
 							onLoad={quillHandleChange}
-							defaultValue={content || ''}
+							value={content}
 							theme="snow"
 							modules={modules}
 							formats={formats}
